@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Dialogue : MonoBehaviour
+public class PasswordDialogue : MonoBehaviour
 {
     [SerializeField] private UI_InputWindow inputWindow;
     public TextMeshProUGUI textComponent;
