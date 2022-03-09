@@ -526,8 +526,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: -165}
+  m_SizeDelta: {x: 0, y: 330}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1063327986
 MonoBehaviour:
@@ -568,7 +568,7 @@ MonoBehaviour:
     special character.\r\nWith these 4 sublevels , we help make sure that the password
     created is strong enough to inhibit most common password attacks.\r\n\r\r\nTeam
     Members:-\r\n1)\tOmar Ahmed Wafaa\r\n2)\tDavid Moheb\r\n3)\tAbdulrahman Kamal\r\n4)\tOmar
-    Magdy\r\n5)\tAhmed Essam\r"
+    Magdy\r\n5)\tAhmed Essam\r\n\nSupervised By:-\n\t\tDr. Hanan Hindy"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 1715831824}
   - component: {fileID: 1715831823}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ScrollPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
