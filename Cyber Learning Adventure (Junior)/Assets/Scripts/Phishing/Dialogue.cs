@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PasswordDialogue : MonoBehaviour
+
+public class Dialogue : MonoBehaviour
 {
-    [SerializeField] private UI_InputWindow inputWindow;
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
     private int index;
-
+    // Start is called before the first frame update
     void Start()
     {
         textComponent.text = string.Empty;
         startDialogue();
     }
-
     public void getNextLine()
     {
-        if(textComponent.text == lines[index])
+        if (textComponent.text == lines[index])
         {
             nextLine();
         }
@@ -29,7 +28,6 @@ public class PasswordDialogue : MonoBehaviour
             textComponent.text = lines[index];
         }
     }
-
     void startDialogue()
     {
         index = 0;
@@ -38,7 +36,7 @@ public class PasswordDialogue : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        foreach(char c in lines[index].ToCharArray())
+        foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
@@ -47,7 +45,7 @@ public class PasswordDialogue : MonoBehaviour
 
     void nextLine()
     {
-        if(index < lines.Length - 1)
+        if (index < lines.Length - 1)
         {
             index++;
             textComponent.text = string.Empty;
@@ -57,7 +55,7 @@ public class PasswordDialogue : MonoBehaviour
         {
             gameObject.SetActive(false);
 
-            inputWindow.Show();
+            //inputWindow.Show();
         }
     }
 }
