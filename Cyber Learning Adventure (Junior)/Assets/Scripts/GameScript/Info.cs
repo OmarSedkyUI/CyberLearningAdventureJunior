@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Info : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject Text;
+    public void Start()
     {
-        
+        Text.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseEnter()
     {
-        
+        Text.SetActive(true);
     }
+
+    public void OnMouseExit()
+    {
+        Text.SetActive(false);
+    }
+
 }
