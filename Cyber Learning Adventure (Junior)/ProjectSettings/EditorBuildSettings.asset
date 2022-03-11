@@ -36,7 +36,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Password/Password4.unity
     guid: d23aacf69ae6bab42ae540aad0897d09
   - enabled: 1
-    path: Assets/Scenes/Phishing1.unity
+    path: Assets/Scenes/Phishing/Phishing1.unity
     guid: 9b31ed02795c6b6418bd33ebaaff5e4b
   - enabled: 1
     path: Assets/Scenes/WinPopUpScene.unity
