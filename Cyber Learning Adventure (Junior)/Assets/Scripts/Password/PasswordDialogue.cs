@@ -60,4 +60,10 @@ public class PasswordDialogue : MonoBehaviour
             inputWindow.Show();
         }
     }
+
+    public void Skip()
+    {
+        gameObject.SetActive(false);
+        inputWindow.Show();
+    }
 }

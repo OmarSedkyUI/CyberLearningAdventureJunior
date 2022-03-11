@@ -328,16 +328,39 @@ public class PasswordChecker : MonoBehaviour
 
         while (Done)
         {
-            //VictoryChecker VC = gameObject.GetComponent<VictoryChecker>();
-            VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
-            VC.Button(Correct);
-            Done = false;
+            Press();
         }
+    }
+    
+    private void Press()
+    {
+        //VictoryChecker VC = gameObject.GetComponent<VictoryChecker>();
+        VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
+        VC.Button(Correct);
+        Done = false;
     }
 
     public void Click()
     {
         if(Done)
             Clicked = true;
+    }
+
+    public void getNextLine()
+    {
+        if (outputField.GetComponent<TextMeshProUGUI>().text == line)
+        {
+            Press();
+        }
+        else
+        {
+            StopAllCoroutines();
+            outputField.GetComponent<TextMeshProUGUI>().text = line;
+        }
+    }
+
+    public void Skip()
+    {
+        Press();
     }
 }
