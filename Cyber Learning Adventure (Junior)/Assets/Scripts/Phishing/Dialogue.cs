@@ -10,6 +10,8 @@ public class Dialogue : MonoBehaviour
     public string[] lines;
     public float textSpeed;
     private int index;
+    private bool StartAnimation = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class Dialogue : MonoBehaviour
         {
             StopAllCoroutines();
             textComponent.text = lines[index];
+            
         }
     }
     void startDialogue()
@@ -54,8 +57,12 @@ public class Dialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-
-            //inputWindow.Show();
+            StartAnimation = true;
         }
+    }
+
+    public bool SetAnimation()
+    {
+        return StartAnimation;
     }
 }
