@@ -38,7 +38,6 @@ public class OutPutDialogue : MonoBehaviour
         button3.interactable = false;
         index = 1;
         StartCoroutine(TypeLine(line1));
-        
     }
 
     public void PressNo()
@@ -62,11 +61,11 @@ public class OutPutDialogue : MonoBehaviour
 
     IEnumerator TypeLine(string line)
     {
-        foreach (char c in line)
+        foreach (char c in line.ToCharArray())
         {
-            Debug.Log(c);
-            textComponent.text += c;
+            //Debug.Log(c);
             yield return new WaitForSeconds(textSpeed);
+            textComponent.text += c;
         }
     }
 
