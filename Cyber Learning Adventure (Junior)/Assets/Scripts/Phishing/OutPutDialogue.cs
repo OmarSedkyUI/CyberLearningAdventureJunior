@@ -63,7 +63,6 @@ public class OutPutDialogue : MonoBehaviour
     {
         foreach (char c in line.ToCharArray())
         {
-            //Debug.Log(c);
             yield return new WaitForSeconds(textSpeed);
             textComponent.text += c;
         }
