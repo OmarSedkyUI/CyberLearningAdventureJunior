@@ -5,8 +5,8 @@ using UnityEngine;
 public class MyAnimationControlller : MonoBehaviour
 {
     private Animator anim;
-    private Dialogue dialogue;
-    private OutPutDialogue outputdialogue;
+    private PhishingDialogue dialogue;
+    private PhishingOutPutDialogue outputdialogue;
     public GameObject popup;
 
     private void Start()
@@ -16,8 +16,8 @@ public class MyAnimationControlller : MonoBehaviour
 
     private void Awake()
     {
-        dialogue = GameObject.FindObjectOfType<Dialogue>();
-        outputdialogue = GameObject.FindObjectOfType<OutPutDialogue>();
+        dialogue = GameObject.FindObjectOfType<PhishingDialogue>();
+        outputdialogue = GameObject.FindObjectOfType<PhishingOutPutDialogue>();
     }
 
     private void Update()

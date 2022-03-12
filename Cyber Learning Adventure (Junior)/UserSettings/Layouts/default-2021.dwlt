@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 92
+  controlID: 17
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -140,14 +140,14 @@ MonoBehaviour:
     y: 0
     width: 1069
     height: 947
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 14}
   - {fileID: 13}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 50
+  controlID: 55
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -335,36 +335,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Graphics
+    - Assets/Scripts/Password
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Graphics
+  - Assets/Scripts/Password
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\CyberLearningAdventureJunior\Cyber Learning Adventure (Junior)
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b8520000
-    m_LastClickedID: 21176
-    m_ExpandedIDs: 00000000485200004a5200004c5200004e52000000ca9a3b
+    m_SelectedIDs: 425f0000
+    m_LastClickedID: 24386
+    m_ExpandedIDs: 000000005e530000685300006a5300006c5300006e53000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Phishing
+      m_OriginalName: Phishing
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 26154
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -378,7 +378,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000485200004a5200004c5200004e520000
+    m_ExpandedIDs: 000000005e530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -775,9 +775,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.19826512, y: -0.053958327, z: -9.985082}
+    m_Target: {x: 0, y: 0, z: -10}
     speed: 2
-    m_Value: {x: 0.19826512, y: -0.053958327, z: -9.985082}
+    m_Value: {x: 0, y: 0, z: -10}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -828,9 +828,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.320785
+    m_Target: 12.124355
     speed: 2
-    m_Value: 8.320785
+    m_Value: 12.124355
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -887,9 +887,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 04ebffff54ebffff9cebffffe4ebffff26ecfffff4ecffff38edffff7cedffffbeedffff02eeffff4ceeffff1cefffff5eefffffa0efffffe8efffff2af0fffff8f0ffff3cf1ffff80f1ffffc2f1ffff04f2ffff4ef2ffffb8f2ffff0ef3ffff5cf3ffffb0f3ffff34f4ffff02f5ffff7ef5ffffd0f5ffff12f6ffff4ef6ffff98f6ffffe2f6ffff3ef7ffff90f7ffff18faffff26fbffff
+      m_SelectedIDs: 4e830000
+      m_LastClickedID: 33614
+      m_ExpandedIDs: fecaffffaeccffff0aceffffa6d5ffff66d7ffff30d9ffffd6daffff28ddffff92ddffff8edeffffcee0ffff94e1ffff6ae2ffffa4e2ffffdee2ffff18e3ffff5ce3ffffa4e3ffffe4e3ffff24e4ffff68e4ffffa6e4ffffe4e4ffff22e5ffff62e5ffffa2e5ffffe4e5ffffb2e6fffff2e6ffff36e7ffffeae8ffffdae9ffff2efbffff625200006c520000ec6c0000be7200004c7300005274000096770000b0770000c0780000ea7800006e79000088790000568100008a810000ae8100004e83000078830000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

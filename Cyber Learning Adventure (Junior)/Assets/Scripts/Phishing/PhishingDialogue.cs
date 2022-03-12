@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 
-public class Dialogue : MonoBehaviour
+public class PhishingDialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] lines;
@@ -59,6 +59,12 @@ public class Dialogue : MonoBehaviour
             gameObject.SetActive(false);
             StartAnimation = true;
         }
+    }
+
+    public void Skip()
+    {
+        gameObject.SetActive(false);
+        StartAnimation = true;
     }
 
     public bool SetAnimation()

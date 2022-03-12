@@ -20,6 +20,8 @@ MonoBehaviour:
     - Password3
     - Password4
   - levelName: Phishing
-    levelData: []
+    levelData:
+    - Phishing1
+    - Phishing2
   - levelName: Social Engineering
     levelData: []

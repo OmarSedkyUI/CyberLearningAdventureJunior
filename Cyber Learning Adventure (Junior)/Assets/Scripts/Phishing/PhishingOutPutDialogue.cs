@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class OutPutDialogue : MonoBehaviour
+public class PhishingOutPutDialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string line1;
@@ -16,6 +16,11 @@ public class OutPutDialogue : MonoBehaviour
     public Button button1;
     public Button button2;
     public Button button3;
+    bool Correct = false;
+    bool Done = false;
+    bool Clicked = false;
+
+    public VictoryChecker VC;
 
 
     // Start is called before the first frame update
@@ -54,7 +59,7 @@ public class OutPutDialogue : MonoBehaviour
     {
         gameObject.SetActive(true);
         textComponent.text = string.Empty;
-
+        Correct = true;
         index = 3;
         StartCoroutine(TypeLine(line3));
     }
@@ -66,11 +71,48 @@ public class OutPutDialogue : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
             textComponent.text += c;
         }
+
+        Done = true;
+
+        yield return new WaitUntil(() => Clicked == true);
+
+        while (Done)
+        {
+            Press();
+        }
+    }
+
+    private void Press()
+    {
+        //VictoryChecker VC = gameObject.GetComponent<VictoryChecker>();
+        VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
+        VC.Button(Correct);
+        Done = false;
+    }
+
+    public void Skip()
+    {
+        if (index == 1)
+        {
+            gameObject.SetActive(false);
+            button2.interactable = true;
+            button3.interactable = true;
+        }
+        else if (index == 2)
+        {
+            gameObject.SetActive(false);
+            button1.interactable = true;
+            button3.interactable = true;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            Press();
+        }
     }
 
     public void next()
     {
-
         if(index == 1)
         {
             if (textComponent.text != line1)
@@ -106,8 +148,8 @@ public class OutPutDialogue : MonoBehaviour
             else
             {
                 gameObject.SetActive(false);
+                Press();
             }
         }
-        
     }
 }
