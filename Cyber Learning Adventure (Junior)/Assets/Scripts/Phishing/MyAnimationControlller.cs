@@ -5,8 +5,8 @@ using UnityEngine;
 public class MyAnimationControlller : MonoBehaviour
 {
     private Animator anim;
-    public Dialogue dialogue;
-    public OutPutDialogue outputdialogue;
+    private Dialogue dialogue;
+    private OutPutDialogue outputdialogue;
     public GameObject popup;
 
     private void Start()
