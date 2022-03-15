@@ -19,7 +19,7 @@ public class Hacker : MonoBehaviour
     void Start()
     {
         hacker = GetComponent<SpriteRenderer>();
-        index = 1;
+        index = 0;
     }
 
     // Update is called once per frame
@@ -42,6 +42,7 @@ public class Hacker : MonoBehaviour
             }
             else
             {
+                Dialogue.SetActive(true);
                 text.text = lines[index];
             }
             index += 1;
@@ -50,15 +51,14 @@ public class Hacker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Dialogue.SetActive(true);
+        
         inColl = true;
-        text.text = lines[0];
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         Dialogue.SetActive(false);
         inColl = false;
-        index = 1;
+        index = 0;
     }
 }
