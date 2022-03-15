@@ -7,6 +7,7 @@ public class InteractableTerminal : MonoBehaviour
 {
     private bool inColl = false;
     static public bool LevelPassed = false;
+    static public int Levels;
     [SerializeField] private GameObject Box;
     [SerializeField] private string Level;
     [SerializeField] private TMP_InputField inputField;
@@ -22,9 +23,10 @@ public class InteractableTerminal : MonoBehaviour
         }
         if(Box.activeSelf && Input.GetKeyDown(KeyCode.Return))
         {
-            if (Level.Equals("Password1"))
+            if (Level.Equals("PasswordChecker"))
             {
-                LevelPassed = Password.Password1(inputField.text);
+                Levels = Password.PasswordChecker(inputField.text);
+                LevelPassed = Password.LevelPassed;
             }
             Box.SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
