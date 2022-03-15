@@ -8,7 +8,8 @@ public class InteractableTerminal : MonoBehaviour
     private bool inColl = false;
     static public bool LevelPassed = false;
     [SerializeField] private GameObject Box;
-
+    [SerializeField] private string Level;
+    [SerializeField] private TMP_InputField inputField;
 
 
     void Update()
@@ -16,11 +17,19 @@ public class InteractableTerminal : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && inColl)
         {
             Box.SetActive(true);
-            //GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-            LevelPassed = true;
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+            //LevelPassed = true;
+        }
+        if(Box.activeSelf && Input.GetKeyDown(KeyCode.Return))
+        {
+            if (Level.Equals("Password1"))
+            {
+                LevelPassed = Password.Password1(inputField.text);
+            }
+            Box.SetActive(false);
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         inColl = true;
