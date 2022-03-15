@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hacker
   - checkpoint
+  - Terminal
   layers:
   - Default
   - TransparentFX

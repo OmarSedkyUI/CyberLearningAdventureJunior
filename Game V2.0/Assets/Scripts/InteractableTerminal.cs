@@ -7,10 +7,7 @@ public class InteractableTerminal : MonoBehaviour
 {
     private bool inColl = false;
     static public bool LevelPassed = false;
-    private int index;
-    [SerializeField] private GameObject Dialogue;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private string[] lines;
+    [SerializeField] private GameObject Box;
 
 
 
@@ -18,19 +15,9 @@ public class InteractableTerminal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && inColl)
         {
-            if (index >= lines.Length)
-            {
-                Dialogue.SetActive(false);
-                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
-                LevelPassed = true;
-            }
-            else
-            {
-                Dialogue.SetActive(true);
-                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-                text.text = lines[index];
-            }
-            index += 1;
+            Box.SetActive(true);
+            //GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+            LevelPassed = true;
         }
     }
 
@@ -41,8 +28,8 @@ public class InteractableTerminal : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Dialogue.SetActive(false);
+        Box.SetActive(false);
+        GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
         inColl = false;
-        index = 0;
     }
 }
