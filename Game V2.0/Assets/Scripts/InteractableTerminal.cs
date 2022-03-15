@@ -3,43 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Hacker : MonoBehaviour
+public class InteractableTerminal : MonoBehaviour
 {
-    private SpriteRenderer hacker;
     private bool inColl = false;
+    static public bool LevelPassed = false;
     private int index;
-
-    [SerializeField] private Transform player;
     [SerializeField] private GameObject Dialogue;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string[] lines;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        hacker = GetComponent<SpriteRenderer>();
-        index = 0;
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if(player.transform.position.x < 27.81)
+        if (Input.GetKeyDown(KeyCode.E) && inColl)
         {
-            hacker.flipX = true;
-        }
-        else
-        {
-            hacker.flipX = false;
-        }
-
-        if(Input.GetKeyDown(KeyCode.E) && inColl)
-        {
-            if(index >= lines.Length)
+            if (index >= lines.Length)
             {
                 Dialogue.SetActive(false);
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                LevelPassed = true;
             }
             else
             {
@@ -53,7 +36,6 @@ public class Hacker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         inColl = true;
     }
 
