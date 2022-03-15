@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask jumpableGround;
 
     private float dirx =0f;
-    [SerializeField] private GameObject Dialogue;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpforce = 14f;
 
@@ -75,24 +74,5 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Hacker"))
-        {
-            Dialogue.SetActive(true);
-            //moveSpeed = 0f;
-            //jumpforce = 0f;
-            StartCoroutine(DisableDialogue());
-        }
-    }
-
-    IEnumerator DisableDialogue()
-    {
-        yield return new WaitForSeconds(2);
-        Dialogue.SetActive(false);
-        //moveSpeed = 7f;
-        //jumpforce = 14f;
     }
 }
