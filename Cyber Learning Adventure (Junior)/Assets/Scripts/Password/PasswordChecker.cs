@@ -35,7 +35,7 @@ public class PasswordChecker : MonoBehaviour
         string[] namesArray;
 
         string fileName = "1000-most-common-passwords.txt";
-        string myFilePath = Application.dataPath + "/Scripts/Password Conditions" + "/" + fileName;
+        string myFilePath = Application.dataPath + "/Scripts/Password" + "/" + fileName;
 
         /*string[] lines = System.IO.File.ReadAllLines(@"D:\Game Development\Cyber Learning Adventure (Junior)\Assets\Scripts\Password Conditions\CommonPasswords.txt");
         string[] Seqlines = System.IO.File.ReadAllLines(@"D:\Game Development\Cyber Learning Adventure (Junior)\Assets\Scripts\Password Conditions\SequentialPass.txt");
