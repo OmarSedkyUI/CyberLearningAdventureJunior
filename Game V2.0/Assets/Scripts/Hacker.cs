@@ -6,7 +6,6 @@ using TMPro;
 public class Hacker : MonoBehaviour
 {
     private SpriteRenderer hacker;
-    private bool inColl = false;
     private int index;
 
     [SerializeField] private Transform player;
@@ -34,11 +33,12 @@ public class Hacker : MonoBehaviour
             hacker.flipX = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && inColl)
+        if(Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 5f)
         {
             if(index >= lines.Length)
             {
                 Dialogue.SetActive(false);
+                index = 0;
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
             }
             else
@@ -49,18 +49,5 @@ public class Hacker : MonoBehaviour
             }
             index += 1;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        inColl = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Dialogue.SetActive(false);
-        inColl = false;
-        index = 0;
     }
 }

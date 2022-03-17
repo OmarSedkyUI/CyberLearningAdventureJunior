@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpforce = 14f;
     [SerializeField] private GameObject Apple;
+    [SerializeField] private Transform elevator;
+
     private enum MovementState { idle, running, jumping, falling}
 
     // Start is called before the first frame update
@@ -80,12 +82,19 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Apple"))
+        if(collision.gameObject.CompareTag("Elevator"))
         {
-            healthbar.IncHealth(10);
-            Apple.SetActive(false);
+            transform.parent = elevator.gameObject.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Elevator"))
+        {
+            transform.parent = null;
         }
     }
 }

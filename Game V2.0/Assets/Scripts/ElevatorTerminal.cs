@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ElevatorTerminal : MonoBehaviour
 {
     [SerializeField] private GameObject Box;
-    private bool inColl = false;
+    [SerializeField] private Transform player;
     static public int lvl;
     public Button Button1;
     public Button Button2;
@@ -17,7 +17,7 @@ public class ElevatorTerminal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inColl)
+        if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
             ButtonController();
             Box.SetActive(true);
@@ -30,34 +30,17 @@ public class ElevatorTerminal : MonoBehaviour
         switch (Levels)
         {
             case 1:
-                Button2.enabled = false;
-                Button3.enabled = false;
-                Button4.enabled = false;
+                Button2.enabled = true;
+                Button3.enabled = true;
+                Button4.enabled = true;
                 break;
             case 2:
-                Button3.enabled = false;
-                Button4.enabled = false;
+                Button3.enabled = true;
+                Button4.enabled = true;
                 break;
             case 3:
-                Button4.enabled = false;
+                Button4.enabled = true;
                 break;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        inColl = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Box.SetActive(false);
-        inColl = false;
-    }
-
-    public void PressButton(int level)
-    {
-        lvl = level;
-        Box.SetActive(false);
     }
 }

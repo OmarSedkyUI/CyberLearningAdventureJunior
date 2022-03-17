@@ -8,6 +8,7 @@ TagManager:
   - checkpoint
   - Terminal
   - Apple
+  - Elevator
   layers:
   - Default
   - TransparentFX

@@ -5,9 +5,9 @@ using TMPro;
 
 public class InteractableTerminal : MonoBehaviour
 {
-    private bool inColl = false;
     static public bool LevelPassed = false;
     static public int Levels;
+    [SerializeField] private Transform player;
     [SerializeField] private GameObject Box;
     [SerializeField] private string Level;
     [SerializeField] private TMP_InputField inputField;
@@ -15,14 +15,15 @@ public class InteractableTerminal : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && inColl)
+        if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
             Box.SetActive(true);
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-            //LevelPassed = true;
         }
-        if(Box.activeSelf && Input.GetKeyDown(KeyCode.Return))
+
+        if (Box.activeSelf && Input.GetKeyDown(KeyCode.Return))
         {
+            Debug.Log("here");
             if (Level.Equals("PasswordChecker"))
             {
                 Levels = Password.PasswordChecker(inputField.text);
@@ -31,17 +32,5 @@ public class InteractableTerminal : MonoBehaviour
             Box.SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        inColl = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Box.SetActive(false);
-        GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
-        inColl = false;
     }
 }

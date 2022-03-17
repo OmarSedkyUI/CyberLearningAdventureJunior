@@ -4,28 +4,38 @@ using UnityEngine;
 
 public class ElevatorController : MonoBehaviour
 {
-    private Animator anim;
+    [SerializeField] private GameObject Box;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform level1;
+    [SerializeField] private Transform level2;
+    [SerializeField] private Transform level3;
+    [SerializeField] private Transform level4;
+    public float speed;
     private int level;
 
-    private void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
+
     private void Update()
     {
-        level = ElevatorTerminal.lvl;
-        anim.SetInteger("Level", level);
-    }
-    // Start is called before the first frame update
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
+        switch (level)
+        {
+            case 1:
+                transform.position = Vector3.MoveTowards(transform.position, level1.transform.position, speed * Time.deltaTime);
+                break;
+            case 2:
+                transform.position = Vector2.MoveTowards(transform.position, level2.position, speed * Time.deltaTime);
+                break;
+            case 3:
+                transform.position = Vector2.MoveTowards(transform.position, level3.position, speed * Time.deltaTime);
+                break;
+            case 4:
+                transform.position = Vector2.MoveTowards(transform.position, level4.position, speed * Time.deltaTime);
+                break;
+        } 
     }
 
-
-    private void OnCollisionExit2D(Collision2D collision)
+    public void ButtonPress(int lvl)
     {
-        anim.SetInteger("Level", 0);
-        //anim.SetBool("Default", true);
+        level = lvl;
+        Box.SetActive(false);
     }
 }
