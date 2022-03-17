@@ -5,7 +5,6 @@ using TMPro;
 
 public class InteractableTerminal : MonoBehaviour
 {
-    public HealthBar healthbar;
     private bool inColl = false;
     static public bool LevelPassed = false;
     static public int Levels;
@@ -31,7 +30,6 @@ public class InteractableTerminal : MonoBehaviour
             }
             Box.SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
-            healthbar.SetHealth(25);
         }
     }
 

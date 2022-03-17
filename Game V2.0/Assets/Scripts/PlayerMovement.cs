@@ -11,11 +11,12 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
 
+
     private float dirx = 0f;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpforce = 14f;
-
+    [SerializeField] private GameObject Apple;
     private enum MovementState { idle, running, jumping, falling}
 
     // Start is called before the first frame update
@@ -77,5 +78,14 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Apple"))
+        {
+            healthbar.IncHealth(10);
+            Apple.SetActive(false);
+        }
     }
 }
