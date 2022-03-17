@@ -1,0 +1,21 @@
+player has total 100 HP
+when he reaches 0 HP he restarts the level
+every time he get hackes he loses 5 HP
+every time he collects fruit he gains 10 HP
+
+
+Level_1: Passwords
+
+Player starts with username only -> HP: 50
+
+first level: he makes his password > 8, he gains a fruit(+10 HP)
+second level: he makes his password with special character (+10 HP)
+third level: ha makes no repititions in password (+10 HP)
+
+forth level is opened after finishing three levels and enters boss fight with (80 HP)
+
+since he doesnt have password to his account, hacker starts hacking him(he loses 5 HP/s), he has to make a strong password to prevent hacker from hacking him
+if he reaches 0 HP he dies and restart level.
+if he makes a strong password, Boss takes damage and level is passed.
+In main menu he makes a password to his account
+depending on how strong his password is he gains a certain amount of HP

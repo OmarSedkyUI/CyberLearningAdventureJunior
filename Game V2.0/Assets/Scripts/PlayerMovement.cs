@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public HealthBar healthbar;
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
 
+    private float dirx = 0f;
     [SerializeField] private LayerMask jumpableGround;
-
-    private float dirx =0f;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpforce = 14f;
 
@@ -24,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        healthbar.SetMaxHealth(100);
+        healthbar.SetHealth(50);
     }
 
     // Update is called once per frame
