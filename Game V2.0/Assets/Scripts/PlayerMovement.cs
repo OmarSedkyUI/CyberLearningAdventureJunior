@@ -43,6 +43,16 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpforce);
         }
 
+        if(healthbar.ReturnHealth() == 0)
+        {
+            Die();
+        }
+
+        if(transform.position.y < -59.03f)
+        {
+            Die();
+        }
+
         UpdateAnimation();
     }
 
@@ -96,5 +106,11 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.parent = null;
         }
+    }
+
+    private void Die()
+    {
+        rb.bodyType = RigidbodyType2D.Static;
+        anim.SetTrigger("death");
     }
 }

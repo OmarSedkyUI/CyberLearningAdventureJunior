@@ -9,22 +9,31 @@ public class InteractableTerminal : MonoBehaviour
     static public int Levels;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject Box;
-    [SerializeField] private string Level;
+    [SerializeField] private string LevelName;
     [SerializeField] private TMP_InputField inputField;
-
+    [SerializeField] private TextMeshProUGUI Error;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
             Box.SetActive(true);
-            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+            Error.enabled = true;
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false; 
         }
 
-        if (Box.activeSelf && Input.GetKeyDown(KeyCode.Return))
+        if(inputField.text == "")
         {
-            Debug.Log("here");
-            if (Level.Equals("PasswordChecker"))
+            Error.enabled = true;
+        }
+        else
+        {
+            Error.enabled = false;
+        }
+
+        if (Box.activeSelf && Input.GetKeyDown(KeyCode.Return) && !Error.enabled)
+        {
+            if (LevelName.Equals("PasswordChecker"))
             {
                 Levels = Password.PasswordChecker(inputField.text);
                 LevelPassed = Password.LevelPassed;
