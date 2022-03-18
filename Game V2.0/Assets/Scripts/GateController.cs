@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GateController : MonoBehaviour
 {
+    
     private Animator anim;
+    public InteractableTerminal it;
     [SerializeField] private Transform player;
 
     // Start is called before the first frame update
@@ -16,7 +18,7 @@ public class GateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InteractableTerminal.LevelPassed)
+        if (it.OpenGate())
         {
             anim.SetBool("Opening", true);
         }

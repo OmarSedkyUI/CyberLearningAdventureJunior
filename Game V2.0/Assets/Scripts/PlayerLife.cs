@@ -8,7 +8,6 @@ public class PlayerLife : MonoBehaviour
     private Animator anim;
     public HealthBar healthbar;
     private Rigidbody2D rb;
-    private bool fall = false;
 
     private void Start()
     {
@@ -38,7 +37,6 @@ public class PlayerLife : MonoBehaviour
 
     private void PlayerRestartLevel()
     {
-        fall = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -5,11 +5,9 @@ using TMPro;
 
 public class InteractableTerminal : MonoBehaviour
 {
-    static public bool LevelPassed = false;
-    static public int Levels;
+    private bool isopened = false;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject Box;
-    [SerializeField] private string LevelName;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI Error;
 
@@ -33,13 +31,16 @@ public class InteractableTerminal : MonoBehaviour
 
         if (Box.activeSelf && Input.GetKeyDown(KeyCode.Return) && !Error.enabled)
         {
-            if (LevelName.Equals("PasswordChecker"))
-            {
-                Levels = Password.PasswordChecker(inputField.text);
-                LevelPassed = Password.LevelPassed;
-            }
+            Passwords.Pass = inputField.text;
+            Passwords.LengthCheck();
             Box.SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            isopened = true;
         }
+    }
+
+    public bool OpenGate()
+    {
+        return isopened;
     }
 }

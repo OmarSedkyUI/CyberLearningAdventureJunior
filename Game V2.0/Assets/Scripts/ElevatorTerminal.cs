@@ -19,28 +19,7 @@ public class ElevatorTerminal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
-            ButtonController();
             Box.SetActive(true);
-        }
-    }
-
-    private void ButtonController()
-    {
-        int Levels = Password.Level;
-        switch (Levels)
-        {
-            case 1:
-                Button2.enabled = true;
-                Button3.enabled = true;
-                Button4.enabled = true;
-                break;
-            case 2:
-                Button3.enabled = true;
-                Button4.enabled = true;
-                break;
-            case 3:
-                Button4.enabled = true;
-                break;
         }
     }
 }
