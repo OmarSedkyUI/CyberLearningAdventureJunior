@@ -36,6 +36,7 @@ public class InteractableTerminal : MonoBehaviour
             Box.SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
             isopened = true;
+            enabled = false;
         }
     }
 

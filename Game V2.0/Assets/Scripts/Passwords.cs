@@ -2,11 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using TMPro;
 
 public class Passwords : MonoBehaviour
 {
     static public string Pass = "";
-    //private int PassStrength = 0;
+    static public bool flag1 = false, flag2 = false, flag3 = false;
+    [SerializeField] private SpriteRenderer Square1;
+    [SerializeField] private SpriteRenderer Square2;
+    [SerializeField] private SpriteRenderer Square3;
+    [SerializeField] private TextMeshProUGUI str;
+
+
+    private void Update()
+    {
+        if(Square1.color == Color.green)
+        {
+            flag1 = true;
+        }
+        if (Square2.color == Color.green)
+        {
+            flag2 = true;
+        }
+        if (Square3.color == Color.green)
+        {
+            flag3 = true;
+        }
+
+        if(Pass == "")
+        {
+            str.text = "Pass Strength: No Password";
+            str.color = Color.black;
+        }
+
+        if(flag1)
+        {
+            str.text = "Pass Strength: Weak";
+            str.color = Color.red;
+        }
+
+        if (flag2)
+        {
+            str.text = "Pass Strength: Fair";
+            str.color = Color.yellow;
+        }
+
+        if (flag3)
+        {
+            str.text = "Pass Strength: Strong";
+            str.color = Color.green;
+        }
+    }
+
 
     static public bool LengthCheck()
     {
