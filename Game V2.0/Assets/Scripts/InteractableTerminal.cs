@@ -29,7 +29,7 @@ public class InteractableTerminal : MonoBehaviour
             Error.enabled = false;
         }
 
-        if (Box.activeSelf && Input.GetKeyDown(KeyCode.Return) && !Error.enabled)
+        if (Box.activeSelf && Input.GetKeyDown(KeyCode.Return) && !Error.enabled && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
             Passwords.Pass = inputField.text;
             Passwords.LengthCheck();

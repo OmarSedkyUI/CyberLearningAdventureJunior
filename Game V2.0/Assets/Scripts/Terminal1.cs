@@ -7,13 +7,13 @@ public class Terminal1 : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer Square;
     [SerializeField] private Transform player;
-    [SerializeField] private GameObject CongratsBox;
-    [SerializeField] private GameObject ImprovePassBox;
-    [SerializeField] private TMP_InputField input;
-    [SerializeField] private TextMeshProUGUI Error;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private TextMeshProUGUI pass;
-    [SerializeField] private GameObject Apple;
+    [SerializeField] public GameObject CongratsBox;
+    [SerializeField] public GameObject ImprovePassBox;
+    [SerializeField] public TMP_InputField input;
+    [SerializeField] public TextMeshProUGUI Error;
+    [SerializeField] public TextMeshProUGUI text;
+    [SerializeField] public TextMeshProUGUI pass;
+    [SerializeField] public GameObject Apple;
     [SerializeField] private string[] lines;
     private int index;
 
@@ -28,7 +28,7 @@ public class Terminal1 : MonoBehaviour
     void Update()
     {
         pass.text = Passwords.Pass;
-        if(Passwords.LengthCheck())
+        if (Passwords.LengthCheck())
         {
             Square.color = Color.green;
         }
@@ -37,13 +37,15 @@ public class Terminal1 : MonoBehaviour
             Square.color = Color.red;
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
+        if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
+            Error.text = "Your Password should be more than 8 characters.";
             if (Square.color == Color.green)
             {
                 if (index >= lines.Length)
                 {
                     CongratsBox.SetActive(false);
+                    text.text = "Well Done!";
                     GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
                 }
                 else
@@ -63,7 +65,7 @@ public class Terminal1 : MonoBehaviour
             }
         }
 
-        if (ImprovePassBox.activeSelf && Input.GetKeyDown(KeyCode.Return))
+        if (ImprovePassBox.activeSelf && Input.GetKeyDown(KeyCode.Return) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
             Passwords.Pass = input.text;
             if (Passwords.LengthCheck())
@@ -79,7 +81,7 @@ public class Terminal1 : MonoBehaviour
             {
                 Error.enabled = true;
             }
-            
+
         }
     }
 
