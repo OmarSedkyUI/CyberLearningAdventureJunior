@@ -26,7 +26,13 @@ public class ElevatorTerminal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
             Box.SetActive(true);
+        }
+        else if (Vector2.Distance(player.position, transform.position) > 1.5f && Vector2.Distance(player.position, transform.position) < 2f)
+        {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            Box.SetActive(false);
         }
         if (Square1.color == Color.green && Square2.color == Color.green && Square3.color == Color.green)
         {

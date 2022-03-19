@@ -64,6 +64,12 @@ public class Terminal2 : MonoBehaviour
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
             }
         }
+        else if (Vector2.Distance(player.position, transform.position) > 1.5f && Vector2.Distance(player.position, transform.position) < 2f)
+        {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            ImprovePassBox.SetActive(false);
+            CongratsBox.SetActive(false);
+        }
 
         if (ImprovePassBox.activeSelf && Input.GetKeyDown(KeyCode.Return) && Vector2.Distance(player.position, transform.position) < 1.5f)
         {

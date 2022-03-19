@@ -17,10 +17,15 @@ public class InteractableTerminal : MonoBehaviour
         {
             Box.SetActive(true);
             Error.enabled = true;
-            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false; 
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+        }
+        else if (Vector2.Distance(player.position, transform.position) > 1.5f && Vector2.Distance(player.position, transform.position) < 2f)
+        {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            Box.SetActive(false);
         }
 
-        if(inputField.text == "")
+        if (inputField.text == "")
         {
             Error.enabled = true;
         }

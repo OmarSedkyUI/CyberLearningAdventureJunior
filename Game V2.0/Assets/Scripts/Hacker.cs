@@ -33,9 +33,9 @@ public class Hacker : MonoBehaviour
             hacker.flipX = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 5f)
+        if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 5f)
         {
-            if(index >= lines.Length)
+            if (index >= lines.Length)
             {
                 Dialogue.SetActive(false);
                 index = 0;
@@ -48,6 +48,11 @@ public class Hacker : MonoBehaviour
                 text.text = lines[index];
             }
             index += 1;
+        }
+        else if (Vector2.Distance(player.position, transform.position) > 5f && Vector2.Distance(player.position, transform.position) < 7.5f)
+        {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            Dialogue.SetActive(false);
         }
     }
 }

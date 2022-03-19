@@ -1,0 +1,30 @@
+Omar & David
+1-Boss
+2-Terminal 3 Condition
+3-Death
+4-Popup Errors (Improved Box)
+5-Dialogue (Congrats Box)
+6-Add NPCs with Chat
+7-Running with Terminal Open / Elevator
+8-Interaction Button
+
+Abdo
+1-Phishing / ChatBot / Game V1.0
+
+Ahmed
+1-Disabled Button Sprite
+2-NPC/Hacker Sprite
+3-Text Bar
+4-Elevator Lever Sprite
+5-Enter Button
+
+Magdy
+1-Presentation
+2-Documentation
+
+
+        else if (Vector2.Distance(player.position, transform.position) > 1.5f)
+        {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            Box.SetActive(false);
+        }
