@@ -34,19 +34,24 @@ public class Passwords : MonoBehaviour
             str.text = "Pass Strength: No Password";
             str.color = Color.black;
         }
-
+        else if (Pass != "")
+        {
+            str.text = "Pass Strength: Weak";
+            str.color = Color.red;
+        }
+        
         if(flag1)
         {
             str.text = "Pass Strength: Weak";
             str.color = Color.red;
         }
-
+        
         if (flag2)
         {
             str.text = "Pass Strength: Fair";
             str.color = Color.yellow;
         }
-
+        
         if (flag3)
         {
             str.text = "Pass Strength: Strong";
