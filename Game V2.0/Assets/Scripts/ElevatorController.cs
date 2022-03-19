@@ -11,7 +11,7 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private Transform level3;
     [SerializeField] private Transform level4;
     public float speed;
-    private int level;
+    public static int level;
 
 
     private void Update()
@@ -19,7 +19,7 @@ public class ElevatorController : MonoBehaviour
         switch (level)
         {
             case 1:
-                transform.position = Vector3.MoveTowards(transform.position, level1.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, level1.position, speed * Time.deltaTime);
                 break;
             case 2:
                 transform.position = Vector2.MoveTowards(transform.position, level2.position, speed * Time.deltaTime);
