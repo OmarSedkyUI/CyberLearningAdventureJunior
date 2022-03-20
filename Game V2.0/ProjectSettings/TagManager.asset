@@ -9,6 +9,7 @@ TagManager:
   - Terminal
   - Apple
   - Elevator
+  - friend
   layers:
   - Default
   - TransparentFX

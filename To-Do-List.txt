@@ -1,11 +1,11 @@
 Omar & David
-1-Boss
+1-Boss (DONE)
 2-Terminal 3 Condition
-3-Death
+3-Death (DONE)
 4-Popup Errors (Improved Box)
 5-Dialogue (Congrats Box)
 6-Add NPCs with Chat
-7-Running with Terminal Open / Elevator
+7-Running with Terminal Open / Elevator (DONE)
 8-Interaction Button
 
 Abdo

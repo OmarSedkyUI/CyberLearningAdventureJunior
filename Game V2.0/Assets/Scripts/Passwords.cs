@@ -7,12 +7,18 @@ using TMPro;
 public class Passwords : MonoBehaviour
 {
     static public string Pass = "";
-    static public bool flag1 = false, flag2 = false, flag3 = false;
+    static public bool flag1, flag2, flag3;
     [SerializeField] private SpriteRenderer Square1;
     [SerializeField] private SpriteRenderer Square2;
     [SerializeField] private SpriteRenderer Square3;
     [SerializeField] private TextMeshProUGUI str;
 
+    private void Start()
+    {
+        flag1 = false;
+        flag2 = false;
+        flag3 = false;
+    }
 
     private void Update()
     {

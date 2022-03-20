@@ -19,6 +19,7 @@ public class PlayerLife : MonoBehaviour
     {
         if (healthbar.ReturnHealth() == 0)
         {
+            Passwords.Pass = "";
             Die();
             enabled = false;
         }

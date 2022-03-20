@@ -9,50 +9,86 @@ public class Hacker : MonoBehaviour
     private int index;
 
     [SerializeField] private Transform player;
+    [SerializeField] private GameObject friend;
+    [SerializeField] private Transform cam;
     [SerializeField] private GameObject Dialogue;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private GameObject PasswordBox;
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private GameObject LevelCompleted;
+    [SerializeField] private TextMeshProUGUI str;
+    [SerializeField] private GameObject Strength;
+    public HealthBar healthBar;
+    [SerializeField] private GameObject HP;
     [SerializeField] private string[] lines;
-
+    static public bool BossDialogue;
+    private bool BossFight;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         hacker = GetComponent<SpriteRenderer>();
-        index = 0;
+        index = 1;
+        text.text = lines[0];
+        BossDialogue = true;
+        BossFight = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(player.transform.position.x < 27.81)
-        {
-            hacker.flipX = true;
-        }
-        else
-        {
-            hacker.flipX = false;
-        }
 
-        if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 5f)
+        if (cam.position.x == 141.02f && cam.position.y == transform.position.y && BossDialogue)
         {
-            if (index >= lines.Length)
+            Dialogue.SetActive(true);
+            HP.SetActive(false);
+            Strength.SetActive(false);
+            Passwords.Pass = "";
+            Passwords.flag1 = false;
+            Passwords.flag2 = false;
+            Passwords.flag3 = false;
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                Dialogue.SetActive(false);
-                index = 0;
-                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                if (index >= lines.Length)
+                {
+                    Dialogue.SetActive(false);
+                    HP.SetActive(true);
+                    Strength.SetActive(true);
+                    GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                    BossDialogue = false;
+                    BossFight = true;
+                    GameObject.Find("Friend").GetComponent<Friend>().AppearFriend = true;
+                }
+                else
+                {
+                    text.text = lines[index];
+                }
+                index += 1;
             }
-            else
-            {
-                Dialogue.SetActive(true);
-                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-                text.text = lines[index];
-            }
-            index += 1;
         }
-        else if (Vector2.Distance(player.position, transform.position) > 5f && Vector2.Distance(player.position, transform.position) < 7.5f)
+        if (BossFight)
         {
-            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
-            Dialogue.SetActive(false);
+            StartCoroutine(StartBossFight());
+        }
+    }
+
+    IEnumerator StartBossFight()
+    {
+        yield return new WaitForSeconds(0.5f);
+        healthBar.DecHealth(1 * Time.deltaTime);
+        
+        GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+        PasswordBox.SetActive(true);
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            Passwords.Pass = inputField.text;
+        }
+        if(str.text == "Pass Strength: Strong")
+        {
+            PasswordBox.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            LevelCompleted.SetActive(true);
+            BossFight = false;
         }
     }
 }
