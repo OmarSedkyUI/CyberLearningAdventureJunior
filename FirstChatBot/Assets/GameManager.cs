@@ -56,6 +56,7 @@ public class BotDialog : Dialog
     public void Approval(Context context, Result result)
     {
         result.SendResponse("You are trapped , I am a hacker and now I got your credentials thanks :))))) ");
+        
     }
 
     [Expression("No that's fake")]
@@ -168,7 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void SendMessageToBot()
     {
-        var userMessage = chatBox.text;
+        var userMessage = mydrop.options[mydrop.value].text;
 
         if (!string.IsNullOrEmpty(userMessage))
         {
@@ -178,8 +179,8 @@ public class GameManager : MonoBehaviour
             var evaluationResult = MainBot.Evaluate(request);
             evaluationResult.Invoke();
 
-            chatBox.Select();
-            chatBox.text = "";
+            //chatBox.Select();
+            //chatBox.text = "";
         }
     }
 
@@ -208,9 +209,22 @@ public class GameManager : MonoBehaviour
         AddEmptyItem();
         
         mydrop.AddOptions(hints);
-        
 
 
+        mydrop.onValueChanged.AddListener(delegate
+
+        {
+            ValueChanged(mydrop);
+        }
+
+
+        );
+
+    }
+
+    public void ValueChanged(TMPro.TMP_Dropdown droppp)
+    {
+        ClearDrop();
     }
     public void ClearDrop()
     {
