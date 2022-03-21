@@ -8,7 +8,6 @@ public class Hacker : MonoBehaviour
     private SpriteRenderer hacker;
     private int index;
 
-    [SerializeField] private Transform player;
     [SerializeField] private GameObject friend;
     [SerializeField] private Transform cam;
     [SerializeField] private GameObject Dialogue;
@@ -22,8 +21,7 @@ public class Hacker : MonoBehaviour
     [SerializeField] private GameObject HP;
     [SerializeField] private string[] lines;
     static public bool BossDialogue;
-    private bool BossFight;
-    
+    static public bool BossFight;
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +42,9 @@ public class Hacker : MonoBehaviour
             HP.SetActive(false);
             Strength.SetActive(false);
             Passwords.Pass = "";
-            Passwords.flag1 = false;
-            Passwords.flag2 = false;
-            Passwords.flag3 = false;
+            //Passwords.flag1 = false;
+            //Passwords.flag2 = false;
+            //Passwords.flag3 = false;
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (index >= lines.Length)
@@ -54,10 +52,8 @@ public class Hacker : MonoBehaviour
                     Dialogue.SetActive(false);
                     HP.SetActive(true);
                     Strength.SetActive(true);
-                    GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
                     BossDialogue = false;
-                    BossFight = true;
-                    GameObject.Find("Friend").GetComponent<Friend>().AppearFriend = true;
+                    Friend.FriendDialogue = true;
                 }
                 else
                 {
@@ -75,7 +71,7 @@ public class Hacker : MonoBehaviour
     IEnumerator StartBossFight()
     {
         yield return new WaitForSeconds(0.5f);
-        healthBar.DecHealth(1 * Time.deltaTime);
+        healthBar.DecHealth(10 * Time.deltaTime);
         
         GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
         PasswordBox.SetActive(true);

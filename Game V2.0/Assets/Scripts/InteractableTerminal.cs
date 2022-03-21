@@ -10,19 +10,26 @@ public class InteractableTerminal : MonoBehaviour
     [SerializeField] private GameObject Box;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI Error;
+    [SerializeField] private GameObject button;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 1.5f)
+        if (Vector2.Distance(player.position, transform.position) < 2f && !Box.activeSelf)
+        {
+            button.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 2f)
         {
             Box.SetActive(true);
+            button.SetActive(false);
             Error.enabled = true;
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
         }
-        else if (Vector2.Distance(player.position, transform.position) > 1.5f && Vector2.Distance(player.position, transform.position) < 2f)
+        else if (Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
         {
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
             Box.SetActive(false);
+            button.SetActive(false);
         }
 
         if (inputField.text == "")
@@ -37,7 +44,6 @@ public class InteractableTerminal : MonoBehaviour
         if (Box.activeSelf && Input.GetKeyDown(KeyCode.Return) && !Error.enabled && Vector2.Distance(player.position, transform.position) < 1.5f)
         {
             Passwords.Pass = inputField.text;
-            Passwords.LengthCheck();
             Box.SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
             isopened = true;

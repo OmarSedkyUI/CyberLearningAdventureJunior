@@ -6,6 +6,7 @@ public class ElevatorController : MonoBehaviour
 {
     [SerializeField] private GameObject Box;
     [SerializeField] private Transform player;
+    [SerializeField] private Transform level0;
     [SerializeField] private Transform level1;
     [SerializeField] private Transform level2;
     [SerializeField] private Transform level3;
@@ -18,6 +19,9 @@ public class ElevatorController : MonoBehaviour
     {
         switch (level)
         {
+            case 0:
+                transform.position = Vector2.MoveTowards(transform.position, level0.position, speed * Time.deltaTime);
+                break;
             case 1:
                 transform.position = Vector2.MoveTowards(transform.position, level1.position, speed * Time.deltaTime);
                 break;

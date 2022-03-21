@@ -50,6 +50,9 @@ TagManager:
   - name: Hacker
     uniqueID: 384996575
     locked: 0
+  - name: Friend
+    uniqueID: 660060693
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

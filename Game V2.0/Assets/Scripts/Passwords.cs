@@ -3,62 +3,108 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class Passwords : MonoBehaviour
 {
     static public string Pass = "";
-    static public bool flag1, flag2, flag3;
+    private bool flag0, flag11, flag21, flag31, flag12, flag22, flag32;
+    private int done;
     [SerializeField] private SpriteRenderer Square1;
     [SerializeField] private SpriteRenderer Square2;
     [SerializeField] private SpriteRenderer Square3;
     [SerializeField] private TextMeshProUGUI str;
-
+    static private string[] namesArray;
+    string fileName;
+    string myFilePath;
     private void Start()
     {
-        flag1 = false;
-        flag2 = false;
-        flag3 = false;
+        fileName = "1000-most-common-passwords.txt";
+        myFilePath = Application.dataPath + "/" + fileName;
+        namesArray = File.ReadAllLines(myFilePath);
+        flag0 = true; flag11 = true; flag21 = true; flag31 = true; flag12 = false; flag22 = false; flag32 = false;
+        done = -1;
     }
 
     private void Update()
     {
-        if(Square1.color == Color.green)
+        
+        if(Square1.color == Color.green && flag11)
         {
-            flag1 = true;
-        }
-        if (Square2.color == Color.green)
-        {
-            flag2 = true;
-        }
-        if (Square3.color == Color.green)
-        {
-            flag3 = true;
+            done += 1;
+            flag11 = false;
+            flag12 = true;
         }
 
-        if(Pass == "")
+        if (Square1.color == Color.red && flag12)
+        {
+            done -= 1;
+            flag11 = true;
+            flag12 = false;
+        }
+
+
+        if (Square2.color == Color.green && flag21)
+        {
+            done += 1;
+            flag21 = false;
+            flag22 = true;
+        }
+
+        if (Square2.color == Color.red && flag22)
+        {
+            done -= 1;
+            flag21 = true;
+            flag22 = false;
+        }
+
+
+        if (Square3.color == Color.green && flag31)
+        {
+            done += 1;
+            flag31 = false;
+            flag32 = true;
+        }
+
+        if (Square3.color == Color.red && flag32)
+        {
+            done -= 1;
+            flag31 = true;
+            flag32 = false;
+        }
+
+
+        if (Pass == "")
         {
             str.text = "Pass Strength: No Password";
             str.color = Color.black;
         }
-        else if (Pass != "")
+
+        if(Pass != "" && flag0)
+        {
+            done += 1;
+            flag0 = false;
+        }
+
+        if (done == 0)
         {
             str.text = "Pass Strength: Weak";
             str.color = Color.red;
         }
         
-        if(flag1)
+        if(done == 1)
         {
             str.text = "Pass Strength: Weak";
             str.color = Color.red;
         }
         
-        if (flag2)
+        if (done == 2)
         {
             str.text = "Pass Strength: Fair";
             str.color = Color.yellow;
         }
         
-        if (flag3)
+        if (done == 3)
         {
             str.text = "Pass Strength: Strong";
             str.color = Color.green;
@@ -102,36 +148,23 @@ public class Passwords : MonoBehaviour
         }
     }
 
-    static public bool RepetitionCheck()
+    static public bool CommonPassCheck()
     {
-        bool repeatedletters = false;
-        int count = 1;
-        for (int i = 0; i < Pass.Length - 1; i++)
+        bool found = false;
+        int i = 0;
+        foreach (string passline in namesArray)
         {
-            if (count >= 3)
+            if (Pass == passline)
             {
-                repeatedletters = true;
+                found = true;
                 break;
             }
-
-            if (Pass[i] == Pass[i + 1])
-            {
-                count += 1;
-
-            }
-            else
-            {
-                count = 1;
-            }
+            i += 1;
         }
-        if (repeatedletters)
-        {
-            return false;
-        }
-        else
-        {
+        if (!found && Pass != "")
             return true;
-        }
+        else
+            return false;
     }
 }
    
