@@ -71,7 +71,7 @@ public class Hacker : MonoBehaviour
     IEnumerator StartBossFight()
     {
         yield return new WaitForSeconds(0.5f);
-        healthBar.DecHealth(10 * Time.deltaTime);
+        healthBar.DecHealth(1 * Time.deltaTime);
         
         GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
         PasswordBox.SetActive(true);
