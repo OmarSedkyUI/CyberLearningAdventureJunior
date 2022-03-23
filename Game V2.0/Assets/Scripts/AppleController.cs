@@ -5,6 +5,7 @@ using UnityEngine;
 public class AppleController : MonoBehaviour
 {
     public HealthBar healthbar;
+    [SerializeField] private AudioSource CollectApple;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

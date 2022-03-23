@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpforce = 14f;
     [SerializeField] private GameObject Apple;
     [SerializeField] private Transform elevator;
+    [SerializeField] private AudioSource JumpingSound;
 
     private enum MovementState { idle, running, jumping, falling}
 
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
+            JumpingSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpforce);
         }
         UpdateAnimation();
