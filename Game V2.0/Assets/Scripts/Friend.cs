@@ -148,10 +148,13 @@ public class Friend : MonoBehaviour
                 sp.flipX = true;
             if (Vector2.Distance(player.position, transform.position) < 2f)
             {
-                button.SetActive(true);
+                if(Box.activeSelf)
+                    button.SetActive(false);
+                else
+                    button.SetActive(true);
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    button.SetActive(true);
                     Box.SetActive(true);
                     if (index >= lines4.Length)
                     {

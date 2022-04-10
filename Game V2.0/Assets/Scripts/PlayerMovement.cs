@@ -45,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpforce);
         }
         UpdateAnimation();
+
+        if(transform.position.y < -28.5f)
+            transform.position = new Vector3(transform.position.x, -26.83f, transform.position.z);
     }
 
     private void UpdateAnimation()
