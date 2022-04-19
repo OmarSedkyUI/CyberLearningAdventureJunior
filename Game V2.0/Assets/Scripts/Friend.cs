@@ -64,8 +64,12 @@ public class Friend : MonoBehaviour
                     index += 1;
                 }
             }
-            else if(Vector2.Distance(player.position, transform.position) > 2f)
+            else if(Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
+            {
                 button.SetActive(false);
+                Box.SetActive(false);
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            }
         }
 
 
@@ -99,8 +103,12 @@ public class Friend : MonoBehaviour
                     index += 1;
                 }
             }
-            else if (Vector2.Distance(player.position, transform.position) > 2f)
-                button.SetActive(true);
+            else if (Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
+            {
+                button.SetActive(false);
+                Box.SetActive(false);
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            }
         }
 
 
@@ -134,8 +142,12 @@ public class Friend : MonoBehaviour
                     index += 1;
                 }
             }
-            else if (Vector2.Distance(player.position, transform.position) > 2f)
+            else if (Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
+            {
                 button.SetActive(false);
+                Box.SetActive(false);
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            }
         }
 
 
@@ -172,14 +184,13 @@ public class Friend : MonoBehaviour
                     index += 1;
                 }
             }
-            else if (Vector2.Distance(player.position, transform.position) > 2f)
+            else if (Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
+            {
                 button.SetActive(false);
+                Box.SetActive(false);
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            }
         }
-
-
-        if (player.position.y <= 44.98097f && player.position.y >= 42.98097f)
-            
-
 
         if( Vector2.Distance(CamPos2.position, cam.position) < 1.5f && FriendDialogue)
         {

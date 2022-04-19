@@ -26,6 +26,7 @@ public class Terminal2 : MonoBehaviour
         Square.color = Color.red;
         index = 0;
         done = false;
+        oneApple = true;
     }
 
     // Update is called once per frame
