@@ -18,9 +18,9 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
         }
 
-        else if(player.position.x >= 164.77f)
+        else if(player.position.x >= 137.5575f)
         {
-            transform.position = new Vector3(164.77f, player.position.y + 4, transform.position.z);
+            transform.position = new Vector3(137.5575f, player.position.y + 4, transform.position.z);
         }
 
         else if(player.position.x >= 100.34f && player.position.y >= 23f && Hacker.BossDialogue)

@@ -36,7 +36,7 @@ public class Friend : MonoBehaviour
     {
         if (player.position.y <= -1.018977f && player.position.y >= -3.018977f)
         {
-            transform.position = new Vector3(27.54f, -2.48505f, transform.position.z);
+            transform.position = new Vector3(27.54f, -2.018974f, transform.position.z);
             if (player.position.x > 27.54f)
                 sp.flipX = false;
             else
@@ -71,7 +71,7 @@ public class Friend : MonoBehaviour
 
         if (player.position.y <= -27.01895f && player.position.y >= -29.01895f)
         {
-            transform.position = new Vector3(114.53f, -28.48511f, transform.position.z);
+            transform.position = new Vector3(114.53f, -28.01898f, transform.position.z);
             if (player.position.x > 114.53f)
                 sp.flipX = false;
             else
@@ -106,7 +106,7 @@ public class Friend : MonoBehaviour
 
         if (player.position.y <= -14.01903f && player.position.y >= -16.01903f)
         {
-            transform.position = new Vector3(114.53f, -15.48521f, transform.position.z);
+            transform.position = new Vector3(114.53f, -15.01903f, transform.position.z);
             if (player.position.x > 114.53f)
                 sp.flipX = false;
             else
@@ -141,7 +141,7 @@ public class Friend : MonoBehaviour
 
         if (player.position.y <= 11.98098f && player.position.y >= 9.98098f)
         {
-            transform.position = new Vector3(114.53f, 10.51477f, transform.position.z);
+            transform.position = new Vector3(114.53f, 10.98097f, transform.position.z);
             if (player.position.x > 114.53f)
                 sp.flipX = false;
             else
@@ -183,7 +183,7 @@ public class Friend : MonoBehaviour
 
         if( Vector2.Distance(CamPos2.position, cam.position) < 1.5f && FriendDialogue)
         {
-                transform.position = new Vector3(106.73f, 43.51477f, transform.position.z);
+                transform.position = new Vector3(106.73f, 43.98096f, transform.position.z);
                 sp.flipX = false;
                 Box.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
