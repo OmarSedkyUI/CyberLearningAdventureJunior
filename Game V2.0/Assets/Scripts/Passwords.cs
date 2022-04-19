@@ -8,8 +8,9 @@ using System.IO;
 public class Passwords : MonoBehaviour
 {
     static public string Pass = "";
-    private bool flag0, flag11, flag21, flag31, flag12, flag22, flag32;
-    private int done;
+    static public bool flag0;
+    private bool flag11, flag21, flag31, flag12, flag22, flag32;
+    static public int done;
     [SerializeField] private SpriteRenderer Square1;
     [SerializeField] private SpriteRenderer Square2;
     [SerializeField] private SpriteRenderer Square3;

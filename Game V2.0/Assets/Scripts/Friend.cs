@@ -193,8 +193,7 @@ public class Friend : MonoBehaviour
                     FriendDialogue = false;
                     Hacker.BossFight = true;
                     Box.SetActive(false);
-
-                }
+                    }
                 else
                     text.text = lines5[index2];
                 index2 += 1;

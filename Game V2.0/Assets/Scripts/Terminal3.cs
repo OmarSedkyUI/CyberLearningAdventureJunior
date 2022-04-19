@@ -16,6 +16,7 @@ public class Terminal3 : MonoBehaviour
     [SerializeField] public GameObject Apple;
     [SerializeField] private GameObject button;
     private bool done;
+    private bool oneApple;
     [SerializeField] private string[] lines;
     private int index;
 
@@ -64,7 +65,11 @@ public class Terminal3 : MonoBehaviour
                     CongratsBox.SetActive(true);
                     GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
                     text.text = lines[index];
-                    StartCoroutine(ShowApple());
+                    if (oneApple)
+                    {
+                        StartCoroutine(ShowApple());
+                        oneApple = false;
+                    }
                 }
                 index += 1;
             }
@@ -93,7 +98,11 @@ public class Terminal3 : MonoBehaviour
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
                 CongratsBox.SetActive(true);
                 index += 1;
-                StartCoroutine(ShowApple());
+                if (oneApple)
+                {
+                    StartCoroutine(ShowApple());
+                    oneApple = false;
+                }
             }
             else
             {
