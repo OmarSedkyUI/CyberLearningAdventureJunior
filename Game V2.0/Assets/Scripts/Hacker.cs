@@ -42,16 +42,14 @@ public class Hacker : MonoBehaviour
             HP.SetActive(false);
             Strength.SetActive(false);
             Passwords.Pass = "";
-            //Passwords.flag1 = false;
-            //Passwords.flag2 = false;
-            //Passwords.flag3 = false;
+            Passwords.done = -1;
+            Passwords.flag0 = true;
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (index >= lines.Length)
                 {
                     Dialogue.SetActive(false);
-                    HP.SetActive(true);
-                    Strength.SetActive(true);
                     BossDialogue = false;
                     Friend.FriendDialogue = true;
                 }
@@ -64,6 +62,8 @@ public class Hacker : MonoBehaviour
         }
         if (BossFight)
         {
+            HP.SetActive(true);
+            Strength.SetActive(true);
             StartCoroutine(StartBossFight());
         }
     }
