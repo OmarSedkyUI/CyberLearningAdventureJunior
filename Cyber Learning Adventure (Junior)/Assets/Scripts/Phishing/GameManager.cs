@@ -53,7 +53,6 @@ public class BotDialog : Dialog
         result.SendResponse("You are trapped , I am a hacker and now I got your credentials thanks :))))) ");
 
         Middle.Win = false;
-        Next.enabled = true;
         Next.gameObject.SetActive(true);
     }
 
@@ -65,7 +64,6 @@ public class BotDialog : Dialog
         result.SendResponse("Ahhh you caught me , well done !! Stay Safe Online!!!");
 
         Middle.Win = true;
-        Next.enabled = true;
         Next.gameObject.SetActive(true);
     }
 }
@@ -73,7 +71,7 @@ public class BotDialog : Dialog
 public static class Middle
 {
     public static bool Win = false;
-    public static Button Next = GameObject.Find("Next").GetComponent<Button>();
+    public static Button Next;
 }
 
 public class GameManager : MonoBehaviour
@@ -86,14 +84,16 @@ public class GameManager : MonoBehaviour
     
     public Color UserColor, BotColor;
 
+    Button Next;
+
     public VictoryChecker VC;
     
     List<Message> Messages = new List<Message>();
 
     private void Awake()
     {
-        Button Next = Middle.Next;
-        Next.enabled = false;
+        Middle.Next = GameObject.Find("Next").GetComponent<Button>();
+        Next = Middle.Next;
         Next.gameObject.SetActive(false);
     }
 
