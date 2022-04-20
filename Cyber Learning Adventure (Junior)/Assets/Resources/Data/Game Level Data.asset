@@ -23,5 +23,5 @@ MonoBehaviour:
     levelData:
     - Phishing1
     - Phishing2
-  - levelName: Social Engineering
+  - levelName: Cyber Bullying
     levelData: []
