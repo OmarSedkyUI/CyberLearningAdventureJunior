@@ -45,7 +45,32 @@ public class GameDataSelector : MonoBehaviour
 
                 SceneManager.LoadScene(currentGameData.selectedLevelName);
             }
-            else if (data.levelName == currentGameData.selectedLevelData)
+            else
+            {
+                for (int index = 0; index < data.levelData.Count; index++)
+                {
+                    if (data.levelData[index] == currentGameData.selectedLevelName)
+                    {
+                        var levelIndex = DataSaver.ReadLevelCurrentIndexValues(currentGameData.selectedLevelData);
+
+                        if (levelIndex < data.levelData.Count)
+                        {
+                            currentGameData.selectedLevelName = data.levelData[levelIndex];
+                            currentGameData.selectedLevelData = data.levelName;
+                            //SceneManager.LoadScene(currentGameData.selectedLevelName);
+                        }
+                        else
+                        {
+                            //SceneManager.LoadScene("SelectLevels");
+                            var randomIndex = Random.Range(0, data.levelData.Count);
+                            currentGameData.selectedLevelName = data.levelData[randomIndex];
+                            currentGameData.selectedLevelData = data.levelName;
+                        }
+                        SceneManager.LoadScene(currentGameData.selectedLevelName);
+                    }
+                }
+            }
+            /*else if (data.levelName == currentGameData.selectedLevelData)
             {
                 var levelIndex = DataSaver.ReadLevelCurrentIndexValues(currentGameData.selectedLevelData);
 
@@ -63,7 +88,7 @@ public class GameDataSelector : MonoBehaviour
                     currentGameData.selectedLevelData = data.levelName;
                 }
                 SceneManager.LoadScene(currentGameData.selectedLevelName);
-            }
+            }*/
         }
     }
 }
