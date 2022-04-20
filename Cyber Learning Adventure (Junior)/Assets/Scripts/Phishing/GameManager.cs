@@ -23,7 +23,7 @@ public enum MessageType
 
 public class BotDialog : Dialog
 {
-
+    Button Next = Middle.Next;
 
     [Expression("Hi I am fine and you ")]
     
@@ -33,9 +33,6 @@ public class BotDialog : Dialog
         result.SendResponse("I am doing great ");
         result.SendResponse("I am one of the creators of the game and our team is giving players unlimited hints to bypass next levels ");
         result.SendResponse("Just provide me with your username to link the hints with your account, and your password as well for authentication purposes");
-
-
-
     }
 
     
@@ -46,8 +43,6 @@ public class BotDialog : Dialog
         result.SendResponse("Sounds Good!");
         result.SendResponse("I am one of the creators of the game and our team is giving players unlimited hints to bypass next levels ");
         result.SendResponse("Just provide me with your username to link the hints with your account, and your password as well for authentication purposes");
-
-
     }
 
     [Expression("Yes sure ")]
@@ -56,7 +51,9 @@ public class BotDialog : Dialog
     public void Approval(Context context, Result result)
     {
         result.SendResponse("You are trapped , I am a hacker and now I got your credentials thanks :))))) ");
-        
+
+        Middle.Win = false;
+        Next.gameObject.SetActive(true);
     }
 
     [Expression("No that's fake")]
@@ -65,33 +62,44 @@ public class BotDialog : Dialog
     public void Denial(Context context, Result result)
     {
         result.SendResponse("Ahhh you caught me , well done !! Stay Safe Online!!!");
+
+        Middle.Win = true;
+        Next.gameObject.SetActive(true);
     }
+}
+
+public static class Middle
+{
+    public static bool Win = false;
+    public static Button Next;
 }
 
 public class GameManager : MonoBehaviour
 {
     OscovaBot MainBot;
 
-    
-
     public GameObject chatPanel, textObject;
     public InputField chatBox;
     public TMPro.TMP_Dropdown mydrop;
     
-
-
-
-
     public Color UserColor, BotColor;
 
+    Button Next;
+
+    public VictoryChecker VC;
+    
     List<Message> Messages = new List<Message>();
+
+    private void Awake()
+    {
+        Middle.Next = GameObject.Find("Next").GetComponent<Button>();
+        Next = Middle.Next;
+        Next.gameObject.SetActive(false);
+    }
 
     // Start is called before the first frame update
     void Start()
-
     {
-       
-
         StartCoroutine(Text());
 
         IEnumerator Text()  //  <-  its a standalone method
@@ -101,52 +109,43 @@ public class GameManager : MonoBehaviour
             AddMessage($" Anonymous: Hello my friend how are you ? ", MessageType.Bot);
         }
 
-
-
-
-            try
+        try
+        {
+            MainBot = new OscovaBot();
+            OscovaBot.Logger.LogReceived += (s, o) =>
             {
-
-               
-
-                MainBot = new OscovaBot();
-                OscovaBot.Logger.LogReceived += (s, o) =>
-                {
-                    Debug.Log($"OscovaBot: {o.Log}");
-                };
-
-                MainBot.Dialogs.Add(new BotDialog());
-                //Knowledge.json file referenced without extension.
-                //Workspace file extensions must be changed from .west to .json
-                //var txtAsset = (TextAsset)Resources.Load("knowledge", typeof(TextAsset));
-                //var tileFile = txtAsset.text;
-                //MainBot.ImportWorkspace("tileFile");
-                MainBot.Trainer.StartTraining();
-
-            MainBot.MainUser.ResponseReceived += (sender, evt) =>
-            {
-                StartCoroutine(Text());
-
-                IEnumerator Text()  //  <-  its a standalone method
-                    {
-
-                    yield return new WaitForSeconds(2);
-
-
-
-                    AddMessage($" Anonymous: {evt.Response.Text} ", MessageType.Bot);
-                };
+                Debug.Log($"OscovaBot: {o.Log}");
             };
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError(ex);
-            }
+
+            MainBot.Dialogs.Add(new BotDialog());
+            //Knowledge.json file referenced without extension.
+            //Workspace file extensions must be changed from .west to .json
+            //var txtAsset = (TextAsset)Resources.Load("knowledge", typeof(TextAsset));
+            //var tileFile = txtAsset.text;
+            //MainBot.ImportWorkspace("tileFile");
+            MainBot.Trainer.StartTraining();
+
+        MainBot.MainUser.ResponseReceived += (sender, evt) =>
+        {
+            StartCoroutine(Text());
+
+            IEnumerator Text()  //  <-  its a standalone method
+                {
+
+                yield return new WaitForSeconds(2);
+
+
+
+                AddMessage($" Anonymous: {evt.Response.Text} ", MessageType.Bot);
+            };
+        };
         }
+        catch (Exception ex)
+        {
+            Debug.LogError(ex);
+        }
+    }
     
-
-    
-
     public void AddMessage(string messageText, MessageType messageType)
     {
         if (Messages.Count >= 25)
@@ -183,20 +182,14 @@ public class GameManager : MonoBehaviour
             //chatBox.text = "";
         }
     }
-
-   
+       
     public void SetInputField()
     {
-
         chatBox.text = mydrop.options[mydrop.value].text;
-
-
     }
     
     public void NextHints()
     {
-
-        
         List<string> hints = new List<string>();
 
         hints.Add("Yes sure");
@@ -249,8 +242,12 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(1);
 
-
             AddMessage($" Anonymous: Ah! Well done for ignoring my message ", MessageType.Bot);
+
+            yield return new WaitForSeconds(2);
+
+            VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
+            VC.Button(true);
         }
     }
 
@@ -261,5 +258,12 @@ public class GameManager : MonoBehaviour
         {
             SendMessageToBot();
         }
+    }
+
+    public void Press()
+    {
+        bool Win = Middle.Win;
+        VictoryChecker VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
+        VC.Button(Win);
     }
 }

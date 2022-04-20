@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 1025617710208653752, guid: 1c92ee1da179f86418554f4f29140ed6,
         type: 3}
       propertyPath: m_Name
-      value: Social Engineering
+      value: Cyber Bullying
       objectReference: {fileID: 0}
     - target: {fileID: 1025617710208653755, guid: 1c92ee1da179f86418554f4f29140ed6,
         type: 3}
@@ -950,7 +950,7 @@ PrefabInstance:
     - target: {fileID: 5371414301639882429, guid: 1c92ee1da179f86418554f4f29140ed6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 850
+      value: 650
       objectReference: {fileID: 0}
     - target: {fileID: 5371414301639882429, guid: 1c92ee1da179f86418554f4f29140ed6,
         type: 3}
@@ -960,7 +960,7 @@ PrefabInstance:
     - target: {fileID: 6774233177150896909, guid: 1c92ee1da179f86418554f4f29140ed6,
         type: 3}
       propertyPath: m_text
-      value: Social Engineering
+      value: Cyber Bullying
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c92ee1da179f86418554f4f29140ed6, type: 3}

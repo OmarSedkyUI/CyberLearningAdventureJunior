@@ -41,7 +41,8 @@ public class SelectLevelButton : MonoBehaviour
 
     public void UpdateButtonInformation()
     {
-        var currentIndex = -1;
+        //var currentIndex = -1;
+        var currentIndex = 0;
         var totalLevels = 0;
 
         foreach (var data in levelData.data)
@@ -61,6 +62,11 @@ public class SelectLevelButton : MonoBehaviour
         }
 
         if (currentIndex == -1)
+        {
+            //_levelLocked = true;
+            currentIndex = 0;
+        }
+        if (totalLevels == 0)
         {
             _levelLocked = true;
         }

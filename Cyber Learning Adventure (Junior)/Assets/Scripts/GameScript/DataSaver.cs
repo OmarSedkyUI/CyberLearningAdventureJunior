@@ -6,7 +6,8 @@ public class DataSaver : MonoBehaviour
 {
     public static int ReadLevelCurrentIndexValues(string name)
     {
-        var value = -1;
+        //var value = -1;
+        var value = 0;
         if (PlayerPrefs.HasKey(name))
             value = PlayerPrefs.GetInt(name);
 
@@ -23,7 +24,8 @@ public class DataSaver : MonoBehaviour
     {
         foreach (var data in levelData.data)
         {
-            PlayerPrefs.SetInt(data.levelName, -1);
+            //PlayerPrefs.SetInt(data.levelName, -1);
+            PlayerPrefs.SetInt(data.levelName, 0);
         }
 
         PlayerPrefs.SetInt(levelData.data[0].levelName, 0);
