@@ -26,14 +26,14 @@ public class Terminal2 : MonoBehaviour
         Square.color = Color.red;
         index = 0;
         done = false;
-        oneApple = true;
+        oneApple = true; 
     }
 
     // Update is called once per frame
     void Update()
     {
         pass.text = Passwords.Pass;
-        Error.text = "You should include atleast one special character, uppercase, lowercase letter and a number in your password.";
+        
         if (Passwords.SpecialCheck())
         {
             Square.color = Color.green;
@@ -107,6 +107,7 @@ public class Terminal2 : MonoBehaviour
             }
             else
             {
+                Error.text = "You should include atleast one special character, uppercase, lowercase letter and a number in your password.";
                 Error.enabled = true;
             }
 

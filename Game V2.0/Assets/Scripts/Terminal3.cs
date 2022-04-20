@@ -26,7 +26,7 @@ public class Terminal3 : MonoBehaviour
         Square.color = Color.red;
         index = 0;
         done = false;
-        oneApple = true;
+        oneApple = true; 
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class Terminal3 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 2f && !done)
         {
-            Error.text = "Your password is commonly used.";
+            
             button.SetActive(false);
             if (Square.color == Color.green)
             {
@@ -107,6 +107,7 @@ public class Terminal3 : MonoBehaviour
             }
             else
             {
+                Error.text = "Your password is commonly used.";
                 Error.enabled = true;
             }
 

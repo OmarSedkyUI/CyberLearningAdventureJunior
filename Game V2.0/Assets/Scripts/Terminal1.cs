@@ -25,7 +25,6 @@ public class Terminal1 : MonoBehaviour
     {
         Square.color = Color.red;
         index = 0;
-        Error.text = "Your Password should be at least 8 characters.";
         done = false;
         oneApple = true;
     }
@@ -109,6 +108,7 @@ public class Terminal1 : MonoBehaviour
             }
             else
             {
+                Error.text = "Your Password should be at least 8 characters.";
                 Error.enabled = true;
             }
 
