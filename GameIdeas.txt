@@ -21,3 +21,4 @@ In main menu he makes a password to his account
 depending on how strong his password is he gains a certain amount of HP
 
 Level_2: Phishing
+when the level starts, friend appears, praises the player for passing level 1 and ask him/her for her new password for whatever reason. Turns out it hacker disguised as friend(player loses HP).
