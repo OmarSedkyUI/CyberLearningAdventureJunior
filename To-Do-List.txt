@@ -23,6 +23,19 @@ Magdy
 2-Documentation
 
 
+
+
+
+
+
+PHASE 2:
+1- level 2
+2- level 3
+3- rewarding system (Abdo, Ahmed)
+4- main menu (Omar Magdy)
+DeadLine next meeting (18/5)
+
+
         else if (Vector2.Distance(player.position, transform.position) > 1.5f)
         {
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
