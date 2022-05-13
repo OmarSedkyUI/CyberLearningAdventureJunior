@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Hacker
+  - checkpoint
+  - Terminal
+  - Apple
+  - Elevator
+  - friend
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 1212387339
+    locked: 0
+  - name: Hacker
+    uniqueID: 384996575
+    locked: 0
+  - name: Friend
+    uniqueID: 660060693
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 772306023
+    locked: 0
+  - name: elevator
+    uniqueID: 553877339
+    locked: 0
+  - name: UI
+    uniqueID: 3767798673
+    locked: 0

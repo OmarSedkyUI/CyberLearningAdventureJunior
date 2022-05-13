@@ -19,3 +19,5 @@ if he reaches 0 HP he dies and restart level.
 if he makes a strong password, Boss takes damage and level is passed.
 In main menu he makes a password to his account
 depending on how strong his password is he gains a certain amount of HP
+
+Level_2: Phishing
