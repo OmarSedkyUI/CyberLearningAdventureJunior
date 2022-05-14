@@ -19,6 +19,9 @@ public class Friend_Level2 : MonoBehaviour
     private Animator anim;
     private bool showChoice;
     private bool oneTime;
+    int Choice;
+    private bool Repeat = true;
+    int Size;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,7 @@ public class Friend_Level2 : MonoBehaviour
         showChoice = true;
         index = 0;
         oneTime = true;
+        Size = lines.Length;
     }
 
     // Update is called once per frame
@@ -58,6 +62,19 @@ public class Friend_Level2 : MonoBehaviour
 
         if (IsGrounded())
         {
+            Choice = GameObject.Find("Hacker").GetComponent<Hacker_Level2>().choice;
+            if (Choice == 1 && Repeat)
+            {
+                index = 3;
+                int LinesNo = 2;
+                Size = index + LinesNo;
+                Repeat = false;
+            }
+            else if (Choice == 2 && Repeat)
+            {
+                index = 5;
+                Repeat = false;
+            }
             StartCoroutine(ConvWithFriend());
         }
 
@@ -73,13 +90,13 @@ public class Friend_Level2 : MonoBehaviour
         {
             button.SetActive(false);
             dialogue.SetActive(true);
-            if (index >= lines.Length)
+            if (index >= Size)
             {
                 dialogue.SetActive(false);
-                index = 3;
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                Repeat = true;
             }
-            else if(index > 2 && showChoice)
+            else if (index > 2 && showChoice)
             {
                 dialogue.SetActive(false);
                 ChoiceBox.SetActive(true);
@@ -98,7 +115,7 @@ public class Friend_Level2 : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1);
         coll.isTrigger = true;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     private bool IsGrounded()
