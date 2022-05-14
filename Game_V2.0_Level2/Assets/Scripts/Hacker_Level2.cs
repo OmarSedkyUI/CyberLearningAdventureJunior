@@ -15,13 +15,15 @@ public class Hacker_Level2 : MonoBehaviour
     private SpriteRenderer sp;
     public float speed;
     private bool oneTime;
-    private int choice;
+    public int choice;
+    public bool FriendAppear;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         oneTime = true;
+        FriendAppear = false;
         choice = 0;
     }
 
@@ -45,6 +47,7 @@ public class Hacker_Level2 : MonoBehaviour
         {
             anim.SetBool("IsRunning", false);
             sp.flipX = true;
+            FriendAppear = true;
         }
     }
     public void AcceptRequest()
