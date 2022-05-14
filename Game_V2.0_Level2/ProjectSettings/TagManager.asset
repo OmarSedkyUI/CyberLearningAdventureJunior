@@ -10,6 +10,7 @@ TagManager:
   - Apple
   - Elevator
   - friend
+  - PopUp
   layers:
   - Default
   - TransparentFX
@@ -58,9 +59,6 @@ TagManager:
     locked: 0
   - name: Terrain
     uniqueID: 772306023
-    locked: 0
-  - name: elevator
-    uniqueID: 553877339
     locked: 0
   - name: UI
     uniqueID: 3767798673

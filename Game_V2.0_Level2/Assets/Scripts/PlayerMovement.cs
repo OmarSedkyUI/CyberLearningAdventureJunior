@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpforce = 14f;
     [SerializeField] private AudioSource JumpingSound;
 
+    [SerializeField] private Transform elevator;
+    public bool moveElevator;
+
     private enum MovementState { idle, running, jumping, falling}
 
     // Start is called before the first frame update
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         healthbar.SetMaxHealth(100);
         healthbar.SetHealth(80);
+        moveElevator = false;
     }
 
     // Update is called once per frame
@@ -82,5 +86,28 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Elevator"))
+        {
+            StartCoroutine(OnElevator());
+            transform.parent = elevator.gameObject.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Elevator"))
+        {
+            transform.parent = null;
+        }
+    }
+
+    IEnumerator OnElevator()
+    {
+        yield return new WaitForSeconds(1);
+        moveElevator = true;
     }
 }
