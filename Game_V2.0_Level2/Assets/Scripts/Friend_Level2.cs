@@ -22,6 +22,7 @@ public class Friend_Level2 : MonoBehaviour
     int Choice;
     private bool Repeat = true;
     int Size;
+    int EPress;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class Friend_Level2 : MonoBehaviour
         index = 0;
         oneTime = true;
         Size = lines.Length;
+        EPress = 4;
     }
 
     // Update is called once per frame
@@ -69,11 +71,13 @@ public class Friend_Level2 : MonoBehaviour
                 int LinesNo = 2;
                 Size = index + LinesNo;
                 Repeat = false;
+                EPress = 3;
             }
             else if (Choice == 2 && Repeat)
             {
                 index = 5;
                 Repeat = false;
+                EPress = 2;
             }
             StartCoroutine(ConvWithFriend());
         }
@@ -86,7 +90,7 @@ public class Friend_Level2 : MonoBehaviour
 
     void Conversation()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && EPress != 0)
         {
             button.SetActive(false);
             dialogue.SetActive(true);
@@ -108,6 +112,7 @@ public class Friend_Level2 : MonoBehaviour
                 text.text = lines[index];
             }
             index += 1;
+            EPress -= 1;
         }
     }
 
