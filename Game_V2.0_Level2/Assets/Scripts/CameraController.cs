@@ -7,16 +7,19 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform hacker;
     [SerializeField] private Transform CamDest;
+    [SerializeField] private GameObject FightGame;
     private float dirx = 0f;
     private float moveSpeed = 15f;
     public Camera cam;
     public float defaultCam;
     Rigidbody2D rb;
+    private bool oneTime;
 
     private void Start()
     {
         defaultCam = GetComponent<Camera>().orthographicSize;
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        oneTime = true;
     }
 
     // Update is called once per frame
@@ -31,9 +34,11 @@ public class CameraController : MonoBehaviour
         }
         else if(Vector2.Distance(player.position, hacker.position) < 25.60f && player.position.x > 400f)
         {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             GameObject.Find("Player").GetComponent<PlayerMovement>().stop = true;
             transform.position = Vector3.MoveTowards(transform.position, CamDest.position, 12 * Time.deltaTime);
-            
+            if(oneTime)
+                StartCoroutine(fighting());
         }
         else
         {
@@ -44,5 +49,12 @@ public class CameraController : MonoBehaviour
             GetComponent<Camera>().orthographicSize += 0.002f;
         else if(player.position.x > 425.9907f && GetComponent<Camera>().orthographicSize >= defaultCam + 2 && dirx > 0f)
             GetComponent<Camera>().orthographicSize -= 0.02f;
+    }
+
+    IEnumerator fighting()
+    {
+        oneTime = false;
+        yield return new WaitForSecondsRealtime(1.5f);
+        FightGame.SetActive(true);
     }
 }

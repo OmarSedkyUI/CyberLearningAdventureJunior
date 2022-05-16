@@ -33,6 +33,7 @@ PHASE 2:
 2- level 3
 3- rewarding system (Abdo, Ahmed)
 4- main menu (Omar Magdy)
+5- replace .enabled in level_1 with .stop
 DeadLine next meeting (18/5)
 
 
