@@ -23,6 +23,9 @@ public class Hacker : MonoBehaviour
     static public bool BossDialogue;
     static public bool BossFight;
 
+    static public bool WinScene;
+    [SerializeField] private Animator hackerAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,8 @@ public class Hacker : MonoBehaviour
         text.text = lines[0];
         BossDialogue = true;
         BossFight = false;
+
+        WinScene = false;
     }
 
     void Update()
@@ -85,6 +90,13 @@ public class Hacker : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             LevelCompleted.SetActive(true);
             BossFight = false;
+
+            yield return new WaitForSeconds(1f);
+
+            LevelCompleted.SetActive(false);
+
+            WinScene = true;
+            hackerAnimator.Play("Hacker_Shrink", 0, 0.0f);
         }
     }
 }
