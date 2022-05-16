@@ -19,7 +19,7 @@ public class PopUpTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerMovement>().enabled = false;
+            collision.GetComponent<PlayerMovement>().stop = true;
 
             popUpObject.SetActive(true);
             if (OneTime)

@@ -30,6 +30,6 @@ public class PopUp : MonoBehaviour
     public void PressX()
     {
         popUp.SetActive(false);
-        Player.GetComponent<PlayerMovement>().enabled = true;
+        Player.GetComponent<PlayerMovement>().stop = false;
     }
 }

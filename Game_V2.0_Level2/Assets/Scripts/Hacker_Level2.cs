@@ -6,10 +6,16 @@ using TMPro;
 public class Hacker_Level2 : MonoBehaviour
 {
     [SerializeField] private GameObject dialogue;
+    [SerializeField] private GameObject dialogue2;
     [SerializeField] private GameObject ChoiceBox;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI text2;
+    [SerializeField] private Transform player;
     [SerializeField] private Transform target;
+    [SerializeField] private Transform dest_2;
     [SerializeField] private Transform friend;
+    [SerializeField] private string[] lines;
+    private int index;
     public HealthBar healthbar;
     private Animator anim;
     private SpriteRenderer sp;
@@ -17,6 +23,11 @@ public class Hacker_Level2 : MonoBehaviour
     private bool oneTime;
     public int choice;
     public bool FriendAppear;
+    public bool transition;
+    private bool atPosition;
+    private bool atPosition_2;
+    private bool conv;
+    public bool passwrodStolen;
 
     private void Start()
     {
@@ -24,7 +35,13 @@ public class Hacker_Level2 : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         oneTime = true;
         FriendAppear = false;
+        transition = true;
+        atPosition = false;
+        atPosition_2 = false;
+        passwrodStolen = false;
+        conv = true;
         choice = 0;
+        index = 0;
     }
 
     private void Update()
@@ -34,36 +51,104 @@ public class Hacker_Level2 : MonoBehaviour
         else if(choice == 2)
             StartCoroutine(Escape2());
 
-        if(!oneTime)
-        {
-            var step = speed * Time.deltaTime;
+        if (player.position.x > transform.position.x)
             sp.flipX = false;
-            anim.SetBool("IsRunning", true);
-            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-            StartCoroutine(Escape3());
+        else
+            sp.flipX = true;
+
+        if (!oneTime)
+        {
+            if (!atPosition)
+            {
+                var step = speed * Time.deltaTime;
+                sp.flipX = false;
+                anim.SetBool("IsRunning", true);
+                transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            }  
         }
      
-        if (transform.position == target.position)
+        if (transform.position == target.position && !atPosition)
+        {
+            Debug.Log("transfere");
+            anim.SetBool("IsRunning", false);
+            FriendAppear = true;
+            atPosition = true;
+            transform.position = new Vector3(206.8191f, -17.01898f, transform.position.z);
+           
+        }
+
+        if(!dialogue.activeSelf && index >= lines.Length)
+        {
+            if (!atPosition_2)
+            {
+                var step = speed * Time.deltaTime;
+                sp.flipX = false;
+                anim.SetBool("IsRunning", true);
+                transform.position = Vector3.MoveTowards(transform.position, dest_2.position, step);
+                
+                GameObject.Find("Player").GetComponent<PlayerMovement>().stop = false;
+            }
+        }
+
+        if (transform.position == dest_2.position && !atPosition_2)
         {
             anim.SetBool("IsRunning", false);
-            sp.flipX = true;
-            FriendAppear = true;
+            friend.position = new Vector3(193.7617f, -17.01898f, friend.position.z);
+            atPosition_2 = true; 
+            passwrodStolen = true;
+            transform.position = new Vector3(457.6f, 13.981f, transform.position.z);
+
+        }
+        else if(player.position.x > dest_2.position.x)
+        {
+            transform.position = new Vector3(457.6f, 13.981f, transform.position.z);
+        }
+
+        if (player.position.x > 199.6042f && choice == 2 && conv)
+        {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().stop = true;
+            text2.text = lines[index];
+            dialogue2.SetActive(true);
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                index += 1;
+                if (index >= lines.Length)
+                {
+                    dialogue2.SetActive(false);
+                    conv = false;
+
+                }
+                else
+                {
+                    text2.text = lines[index];
+                }
+            }
+
         }
     }
     public void AcceptRequest()
     {
-        ChoiceBox.SetActive(false);
-        friend.position = new Vector3(-19.3083f, -2.019091f, friend.position.z);
-        transform.position = new Vector3(46.23f, -2.019091f, transform.position.z);
-        choice = 1;
+        if(transition)
+        {
+            ChoiceBox.SetActive(false);
+            friend.position = new Vector3(-19.3083f, -2.019091f, friend.position.z);
+            transform.position = new Vector3(46.23f, -2.019091f, transform.position.z);
+            choice = 1;
+            transition = false;
+        }
+        
         
     }
     public void RejectRequest()
     {
-        ChoiceBox.SetActive(false);
-        friend.position = new Vector3(-19.3083f, -2.019091f, friend.position.z);
-        transform.position = new Vector3(46.23f, -2.019091f, transform.position.z);
-        choice = 2;
+        if(transition)
+        {
+            ChoiceBox.SetActive(false);
+            friend.position = new Vector3(-19.3083f, -2.019091f, friend.position.z);
+            transform.position = new Vector3(46.23f, -2.019091f, transform.position.z);
+            choice = 2;
+            transition = false;
+        }
     }
 
     IEnumerator Escape1()
@@ -92,7 +177,7 @@ public class Hacker_Level2 : MonoBehaviour
 
     IEnumerator Escape3()
     {
-        yield return new WaitForSecondsRealtime(2);
-        GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+        yield return new WaitForSecondsRealtime(1.5f);
+        GameObject.Find("Player").GetComponent<PlayerMovement>().stop = false;
     }
 }

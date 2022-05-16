@@ -20,12 +20,12 @@ public class GateController : MonoBehaviour
     {
         if (it.OpenGate())
         {
-            anim.SetBool("Opening", true);
+            anim.SetBool("Openning", true);
         }
 
-        if(player.position.x > 46.77077)
+        if(player.position.x > 183.6346)
         {
-            anim.SetBool("Opening", false);
+            anim.SetBool("Openning", false);
         }
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - Elevator
   - friend
   - PopUp
+  - Elevator_2
   layers:
   - Default
   - TransparentFX

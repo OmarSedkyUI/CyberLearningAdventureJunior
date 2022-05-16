@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class Hacker : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Hacker : MonoBehaviour
     [SerializeField] private string[] lines;
     static public bool BossDialogue;
     static public bool BossFight;
+    private bool WritePass;
 
     static public bool WinScene;
     [SerializeField] private Animator hackerAnimator;
@@ -34,7 +36,7 @@ public class Hacker : MonoBehaviour
         text.text = lines[0];
         BossDialogue = true;
         BossFight = false;
-
+        WritePass = true;
         WinScene = false;
     }
 
@@ -86,6 +88,15 @@ public class Hacker : MonoBehaviour
         }
         if(str.text == "Pass Strength: Strong")
         {
+            if(WritePass)
+            {
+                string path = "D:/Graduation Project/CyberLearningAdventureJunior/Game_V2.0_Level2/Assets/UserPassword.txt";
+                StreamWriter writer = new StreamWriter(path, true);
+                writer.WriteLine(Passwords.Pass);
+                writer.Close();
+                WritePass = false;
+            }
+            
             PasswordBox.SetActive(false);
             yield return new WaitForSeconds(0.5f);
             LevelCompleted.SetActive(true);

@@ -11,6 +11,8 @@ public class Friend_Level2 : MonoBehaviour
     [SerializeField] private GameObject ChoiceBox;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string[] lines;
+    [SerializeField] private string[] lines2;
+    private int index2;
     private int index;
     [SerializeField] private LayerMask jumpableGround;
     private SpriteRenderer sp;
@@ -41,7 +43,7 @@ public class Friend_Level2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.position.x > 46.23003)
+        if (player.position.x > transform.position.x)
             sp.flipX = false;
         else
             sp.flipX = true;
@@ -82,6 +84,32 @@ public class Friend_Level2 : MonoBehaviour
             StartCoroutine(ConvWithFriend());
         }
 
+        if(GameObject.Find("Hacker").GetComponent<Hacker_Level2>().passwrodStolen)
+        {
+            if (Vector2.Distance(player.position, transform.position) < 2.5f)
+            {
+                button.SetActive(true);
+                if(Input.GetKeyDown(KeyCode.E))
+                {
+                    dialogue.SetActive(true);
+                    button.SetActive(false);
+                    if (index2 >= lines2.Length)
+                    {
+                        dialogue.SetActive(false);
+                        GameObject.Find("Player").GetComponent<PlayerMovement>().stop = false;
+                    }
+                    else
+                    {
+                        text.text = lines2[index2];
+                    }
+                    index2 += 1;
+                }
+            }
+            
+            else
+                button.SetActive(false);
+        }
+
         if (!IsGrounded())
             anim.SetBool("IsFalling", true);
         else
@@ -97,7 +125,7 @@ public class Friend_Level2 : MonoBehaviour
             if (index >= Size)
             {
                 dialogue.SetActive(false);
-                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                GameObject.Find("Player").GetComponent<PlayerMovement>().stop = false;
                 Repeat = true;
             }
             else if (index > 2 && showChoice)
@@ -108,7 +136,7 @@ public class Friend_Level2 : MonoBehaviour
             }
             else
             {
-                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+                GameObject.Find("Player").GetComponent<PlayerMovement>().stop = true;
                 text.text = lines[index];
             }
             index += 1;
