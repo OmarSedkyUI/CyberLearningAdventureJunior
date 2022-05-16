@@ -10,7 +10,6 @@ public class BossFight : MonoBehaviour
     [SerializeField] private string[] Links;
     [SerializeField] private string[] FakeLinks;
     public HealthBar healthbar;
-
     private Animator anim;
 
     private int index;
@@ -35,7 +34,7 @@ public class BossFight : MonoBehaviour
     {
         anim.SetBool("FadeOut", true);
         anim.SetBool("FadeIn", false);
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.7f);
         index += 1;
         link.color = Color.white;
         link.text = Links[index];
@@ -52,8 +51,8 @@ public class BossFight : MonoBehaviour
             link.color = Color.red;
             healthbar.DecHealth(10);
         }
-
-        StartCoroutine(LoadNextLink());
+        if(index < Links.Length)
+            StartCoroutine(LoadNextLink());
     }
 
     public void PressNo()
@@ -65,7 +64,8 @@ public class BossFight : MonoBehaviour
             link.color = Color.red;
             healthbar.DecHealth(10);
         }
-        StartCoroutine(LoadNextLink());
+        if (index < Links.Length)
+            StartCoroutine(LoadNextLink());
     }
 
     private string CheckFakeLink(string li)
