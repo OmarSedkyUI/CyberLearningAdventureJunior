@@ -27,7 +27,6 @@ public class InteractableTerminal : MonoBehaviour
         password = reader.ReadToEnd();
         password = password.Replace(" ", "");
         password = password.Replace("\r", "").Replace("\n", "");
-        Debug.Log(password);
         reader.Close();
         Error.enabled = false;
         
