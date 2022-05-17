@@ -6,6 +6,7 @@ using TMPro;
 public class BossFight : MonoBehaviour
 {
     [SerializeField] private GameObject FightGame;
+    [SerializeField] private GameObject LevelComplete;
     [SerializeField] private TextMeshProUGUI link;
     [SerializeField] private string[] Links;
     [SerializeField] private string[] FakeLinks;
@@ -27,7 +28,10 @@ public class BossFight : MonoBehaviour
     {
 
         if (index >= Links.Length)
-            FightGame.SetActive(false);    
+        {
+            FightGame.SetActive(false);
+            LevelComplete.SetActive(true);
+        } 
     }
 
     IEnumerator LoadNextLink()

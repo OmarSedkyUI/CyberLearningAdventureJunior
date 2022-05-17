@@ -8,6 +8,7 @@ public class Terminal_2 : MonoBehaviour
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject Anonymos;
     [SerializeField] private GameObject ChatBot;
+    [SerializeField] private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +36,6 @@ public class Terminal_2 : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2.5f);
         ChatBot.SetActive(true);
+        gameManager.StartBot();
     }
 }

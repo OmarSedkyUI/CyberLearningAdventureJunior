@@ -86,8 +86,10 @@ public class GameManager : MonoBehaviour
 
     Button Next;
 
+    [SerializeField] private HealthBar healthBar;
+
     //public VictoryChecker VC;
-    
+
     List<Message> Messages = new List<Message>();
 
     private void Awake()
@@ -102,7 +104,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Text());
+        /*StartCoroutine(Text());
 
         IEnumerator Text()  //  <-  its a standalone method
         {
@@ -145,7 +147,7 @@ public class GameManager : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogError(ex);
-        }
+        }*/
     }
     
     public void AddMessage(string messageText, MessageType messageType)
@@ -166,6 +168,15 @@ public class GameManager : MonoBehaviour
         newMessage.TextObject.color = messageType == MessageType.User ? UserColor : BotColor;
 
         Messages.Add(newMessage);
+    }
+
+    public void RemoveMessage()
+    {
+        for (int i = (Messages.Count - 1); i >= 0; i--)
+        {
+            Destroy(Messages[i].TextObject.gameObject);
+            Messages.Remove(Messages[i]);
+        }
     }
 
     public void SendMessageToBot()
@@ -272,10 +283,71 @@ public class GameManager : MonoBehaviour
         {
             Win();
         }
+        else
+        {
+            healthBar.DecHealth(10);
+            Next.gameObject.SetActive(false);
+            RemoveMessage();
+            StartCoroutine(Wait());
+            StartBot();
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     private void Win()
     {
         ChatBot.gameObject.SetActive(false);
+    }
+
+    public void StartBot()
+    {
+        StartCoroutine(Text());
+
+        IEnumerator Text()  //  <-  its a standalone method
+        {
+
+            yield return new WaitForSeconds(2);
+            AddMessage($" Anonymous: Hello my friend how are you ? ", MessageType.Bot);
+        }
+
+        try
+        {
+            MainBot = new OscovaBot();
+            OscovaBot.Logger.LogReceived += (s, o) =>
+            {
+                Debug.Log($"OscovaBot: {o.Log}");
+            };
+
+            MainBot.Dialogs.Add(new BotDialog());
+            //Knowledge.json file referenced without extension.
+            //Workspace file extensions must be changed from .west to .json
+            //var txtAsset = (TextAsset)Resources.Load("knowledge", typeof(TextAsset));
+            //var tileFile = txtAsset.text;
+            //MainBot.ImportWorkspace("tileFile");
+            MainBot.Trainer.StartTraining();
+
+            MainBot.MainUser.ResponseReceived += (sender, evt) =>
+            {
+                StartCoroutine(Text());
+
+                IEnumerator Text()  //  <-  its a standalone method
+                {
+
+                    yield return new WaitForSeconds(2);
+
+
+
+                    AddMessage($" Anonymous: {evt.Response.Text} ", MessageType.Bot);
+                };
+            };
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError(ex);
+        }
     }
 }

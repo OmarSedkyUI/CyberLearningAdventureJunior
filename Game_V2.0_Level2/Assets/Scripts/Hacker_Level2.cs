@@ -69,7 +69,6 @@ public class Hacker_Level2 : MonoBehaviour
      
         if (transform.position == target.position && !atPosition)
         {
-            Debug.Log("transfere");
             anim.SetBool("IsRunning", false);
             FriendAppear = true;
             atPosition = true;
