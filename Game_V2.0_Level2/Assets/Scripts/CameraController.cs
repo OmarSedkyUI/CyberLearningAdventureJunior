@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,18 +9,25 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform hacker;
     [SerializeField] private Transform CamDest;
     [SerializeField] private GameObject FightGame;
+    [SerializeField] private GameObject FinalDialogue;
+    [SerializeField] private TextMeshProUGUI text;
+
+    [SerializeField] private string[] lines;
     private float dirx = 0f;
     private float moveSpeed = 15f;
     public Camera cam;
-    public float defaultCam;
+    private float defaultCam;
     Rigidbody2D rb;
     private bool oneTime;
+    private int index;
 
     private void Start()
     {
         defaultCam = GetComponent<Camera>().orthographicSize;
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         oneTime = true;
+        text.text = lines[0];
+        index = 1;
     }
 
     // Update is called once per frame
@@ -47,14 +55,30 @@ public class CameraController : MonoBehaviour
 
         if (player.position.x > 301.2252f && player.position.x < 425.9907f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
             GetComponent<Camera>().orthographicSize += 0.002f;
-        else if(player.position.x > 425.9907f && GetComponent<Camera>().orthographicSize >= defaultCam + 2 && dirx > 0f)
+        else if(player.position.x > 432.1248f && GetComponent<Camera>().orthographicSize >= defaultCam + 2.5)
             GetComponent<Camera>().orthographicSize -= 0.02f;
+
+        if(FinalDialogue.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (index >= lines.Length)
+                {
+                    FinalDialogue.SetActive(false);
+                    FightGame.SetActive(true);
+                }
+                else
+                    text.text = lines[index];
+                index += 1;
+            }
+        }
     }
 
     IEnumerator fighting()
     {
         oneTime = false;
         yield return new WaitForSecondsRealtime(1.5f);
-        FightGame.SetActive(true);
+        FinalDialogue.SetActive(true);
+        
     }
 }

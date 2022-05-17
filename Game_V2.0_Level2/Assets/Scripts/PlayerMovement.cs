@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         healthbar.SetMaxHealth(100);
-        healthbar.SetHealth(80);
         moveElevator = false;
         moveElevator_2 = false;
         stop = false;
