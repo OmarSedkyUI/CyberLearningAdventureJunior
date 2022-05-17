@@ -22,6 +22,7 @@ public class Terminal_2 : MonoBehaviour
             button.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
+                GameObject.Find("Player").GetComponent<PlayerMovement>().stop = true;
                 Anonymos.SetActive(true);
                 StartCoroutine(StartChatBot());
             }

@@ -8,24 +8,30 @@ public class PopUpTrigger : MonoBehaviour
     [SerializeField] private Animator popUp;
     [SerializeField] private Transform player;
     bool OneTime;
+    bool OnlyOne;
 
     private void Awake()
     {
         popUpObject.SetActive(false);
         OneTime = true;
+        OnlyOne = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerMovement>().stop = true;
-
-            popUpObject.SetActive(true);
-            if (OneTime)
+            if (OnlyOne)
             {
-                popUp.Play("PopUp_Up", 0, 0.0f);
-                OneTime = false;
+                collision.GetComponent<PlayerMovement>().stop = true;
+
+                popUpObject.SetActive(true);
+                if (OneTime)
+                {
+                    popUp.Play("PopUp_Up", 0, 0.0f);
+                    OneTime = false;
+                }
+                OnlyOne = false;
             }
         }
     }

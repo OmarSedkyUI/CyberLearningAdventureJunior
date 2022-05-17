@@ -22,7 +22,7 @@ public class InteractableTerminal : MonoBehaviour
     void Start()
     {
         isOpened = false;
-        path = "D:/Graduation Project/CyberLearningAdventureJunior/Game_V2.0_Level2/Assets/UserPassword.txt";
+        path = "D:/CyberLearningAdventureJunior/Game_V2.0_Level2/Assets/UserPassword.txt";
         reader = new StreamReader(path);
         password = reader.ReadToEnd();
         password = password.Replace(" ", "");
