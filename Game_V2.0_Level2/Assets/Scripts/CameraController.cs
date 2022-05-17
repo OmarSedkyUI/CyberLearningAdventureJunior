@@ -78,7 +78,6 @@ public class CameraController : MonoBehaviour
         oneTime = false;
         text.text = lines[0];
         yield return new WaitForSecondsRealtime(1.5f);
-        Debug.Log("HERE");
         FinalDialogue.SetActive(true);
         
     }
