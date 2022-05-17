@@ -38,7 +38,9 @@ public class InteractableTerminal : MonoBehaviour
     {
         if(Vector2.Distance(player.position, transform.position) < 2.5f)
         {
-            button.SetActive(true);
+            if (!EnterPass.activeSelf)
+                button.SetActive(true);
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 GameObject.Find("Player").GetComponent<PlayerMovement>().stop = true;

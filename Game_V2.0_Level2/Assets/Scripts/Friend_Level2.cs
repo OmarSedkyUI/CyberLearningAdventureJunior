@@ -50,7 +50,8 @@ public class Friend_Level2 : MonoBehaviour
 
         if (Vector2.Distance(player.position, transform.position) < 2.5f)
         {
-            button.SetActive(true);
+            if(!dialogue.activeSelf)
+                button.SetActive(true);
             Conversation();
         }
         else
@@ -58,7 +59,7 @@ public class Friend_Level2 : MonoBehaviour
 
         if (GameObject.Find("Hacker").GetComponent<Hacker_Level2>().FriendAppear && oneTime)
         {
-            transform.position = new Vector3(46.23f, 9.42f, transform.position.z);
+            transform.position = new Vector3(player.position.x + 2.4f, 9.42f, transform.position.z);
             rb.constraints = RigidbodyConstraints2D.None;
             coll.isTrigger = false;
             oneTime = false;
@@ -88,8 +89,10 @@ public class Friend_Level2 : MonoBehaviour
         {
             if (Vector2.Distance(player.position, transform.position) < 2.5f)
             {
-                button.SetActive(true);
-                if(Input.GetKeyDown(KeyCode.E))
+                if (!dialogue.activeSelf)
+                    button.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     dialogue.SetActive(true);
                     button.SetActive(false);

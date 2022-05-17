@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     private float dirx = 0f;
     private float moveSpeed = 15f;
     public Camera cam;
-    private float defaultCam;
+    public float defaultCam;
     Rigidbody2D rb;
     private bool oneTime;
     private int index;
@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
         defaultCam = GetComponent<Camera>().orthographicSize;
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         oneTime = true;
-        text.text = lines[0];
         index = 1;
     }
 
@@ -53,12 +52,12 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(player.position.x, player.position.y + 4, transform.position.z);
         }
 
-        if (player.position.x > 301.2252f && player.position.x < 425.9907f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
-            GetComponent<Camera>().orthographicSize += 0.002f;
-        else if(player.position.x > 432.1248f && GetComponent<Camera>().orthographicSize >= defaultCam + 2.5)
+        if (player.position.x > 301.2252f && player.position.x < 432f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
+            GetComponent<Camera>().orthographicSize += 0.005f;
+        else if(player.position.x > 432f && GetComponent<Camera>().orthographicSize >= defaultCam + 2)
             GetComponent<Camera>().orthographicSize -= 0.02f;
 
-        if(FinalDialogue.activeSelf)
+        if(!oneTime)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -77,7 +76,9 @@ public class CameraController : MonoBehaviour
     IEnumerator fighting()
     {
         oneTime = false;
+        text.text = lines[0];
         yield return new WaitForSecondsRealtime(1.5f);
+        Debug.Log("HERE");
         FinalDialogue.SetActive(true);
         
     }
