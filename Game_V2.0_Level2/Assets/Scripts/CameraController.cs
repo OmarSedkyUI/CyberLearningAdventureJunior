@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject FightGame;
     [SerializeField] private GameObject FinalDialogue;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject UI;
 
     [SerializeField] private string[] lines;
     private float dirx = 0f;
@@ -20,42 +22,70 @@ public class CameraController : MonoBehaviour
     Rigidbody2D rb;
     private bool oneTime;
     private int index;
-
+    Animator anim;
     private void Start()
     {
+        
+        UI.SetActive(false);
+        anim = GetComponent<Animator>();
         defaultCam = GetComponent<Camera>().orthographicSize;
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         oneTime = true;
         index = 1;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(anim.recorderStartTime);
         dirx = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirx * moveSpeed, rb.velocity.y);
 
-        if (player.position.x <= -0.02f)
+        if(MainMenu.activeSelf)
         {
-            transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
-        }
-        else if(Vector2.Distance(player.position, hacker.position) < 25.60f && player.position.x > 400f)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            transform.position = new Vector3(-9.8f, player.position.y + 4, transform.position.z);
             GameObject.Find("Player").GetComponent<PlayerMovement>().stop = true;
-            transform.position = Vector3.MoveTowards(transform.position, CamDest.position, 12 * Time.deltaTime);
-            if(oneTime)
-                StartCoroutine(fighting());
         }
         else
         {
-            transform.position = new Vector3(player.position.x, player.position.y + 4, transform.position.z);
+           
+            {
+                
+                if (player.position.x < 0f)
+                {
+                    transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
+                }
+
+
+                else if (Vector2.Distance(player.position, hacker.position) < 25.60f && player.position.x > 400f)
+                {
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                    GameObject.Find("Player").GetComponent<PlayerMovement>().stop = true;
+                    transform.position = Vector3.MoveTowards(transform.position, CamDest.position, 12 * Time.deltaTime);
+                    if (oneTime)
+                        StartCoroutine(fighting());
+                }
+
+
+                else
+                {
+                    transform.position = new Vector3(player.position.x, player.position.y + 4, transform.position.z);
+                }
+            }
+                
+
+           
+
         }
+
+
 
         if (player.position.x > 301.2252f && player.position.x < 432f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
             GetComponent<Camera>().orthographicSize += 0.005f;
         else if(player.position.x > 432f && GetComponent<Camera>().orthographicSize >= defaultCam + 2)
             GetComponent<Camera>().orthographicSize -= 0.02f;
+
 
         if(!oneTime)
         {
@@ -81,4 +111,21 @@ public class CameraController : MonoBehaviour
         FinalDialogue.SetActive(true);
         
     }
+    public void PressPlay()
+    {
+
+        anim.Play("CameraAnimation", 0);
+        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+        MainMenu.SetActive(false);
+        UI.SetActive(true);
+        StartCoroutine(Wait(info));
+    }
+
+    IEnumerator Wait(AnimatorStateInfo info)
+    {
+        yield return new WaitForSeconds(info.length);
+        GameObject.Find("Player").GetComponent<PlayerMovement>().stop = false;
+        anim.enabled = false;
+    }
+    
 }
