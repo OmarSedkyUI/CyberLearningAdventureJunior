@@ -26,7 +26,7 @@ public class BotDialog : Dialog
     Button Next = Middle.Next;
 
     [Expression("Hi I am fine and you ")]
-    
+
     [Expression("Great and you?")]
     public void DoubleGreetings(Context context, Result result)
     {
@@ -35,9 +35,9 @@ public class BotDialog : Dialog
         result.SendResponse("Just provide me with your username to link the hints with your account, and your password as well for authentication purposes");
     }
 
-    
+
     [Expression("Hello ")]
-  
+
     public void Greetings(Context context, Result result)
     {
         result.SendResponse("Sounds Good!");
@@ -57,7 +57,7 @@ public class BotDialog : Dialog
     }
 
     [Expression("No that's fake")]
-    
+
     [Expression("No I will report you")]
     public void Denial(Context context, Result result)
     {
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     public GameObject chatPanel, textObject, ChatBot;
     public InputField chatBox;
     public TMPro.TMP_Dropdown mydrop;
-    
+
     public Color UserColor, BotColor;
 
     Button Next;
@@ -101,55 +101,6 @@ public class GameManager : MonoBehaviour
         ChatBot.gameObject.SetActive(false);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        /*StartCoroutine(Text());
-
-        IEnumerator Text()  //  <-  its a standalone method
-        {
-
-            yield return new WaitForSeconds(2);
-            AddMessage($" Anonymous: Hello my friend how are you ? ", MessageType.Bot);
-        }
-
-        try
-        {
-            MainBot = new OscovaBot();
-            OscovaBot.Logger.LogReceived += (s, o) =>
-            {
-                Debug.Log($"OscovaBot: {o.Log}");
-            };
-
-            MainBot.Dialogs.Add(new BotDialog());
-            //Knowledge.json file referenced without extension.
-            //Workspace file extensions must be changed from .west to .json
-            //var txtAsset = (TextAsset)Resources.Load("knowledge", typeof(TextAsset));
-            //var tileFile = txtAsset.text;
-            //MainBot.ImportWorkspace("tileFile");
-            MainBot.Trainer.StartTraining();
-
-        MainBot.MainUser.ResponseReceived += (sender, evt) =>
-        {
-            StartCoroutine(Text());
-
-            IEnumerator Text()  //  <-  its a standalone method
-                {
-
-                yield return new WaitForSeconds(2);
-
-
-
-                AddMessage($" Anonymous: {evt.Response.Text} ", MessageType.Bot);
-            };
-        };
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError(ex);
-        }*/
-    }
-    
     public void AddMessage(string messageText, MessageType messageType)
     {
         if (Messages.Count >= 25)
@@ -195,12 +146,12 @@ public class GameManager : MonoBehaviour
             //chatBox.text = "";
         }
     }
-       
+
     public void SetInputField()
     {
         chatBox.text = mydrop.options[mydrop.value].text;
     }
-    
+
     public void NextHints()
     {
         List<string> hints = new List<string>();
@@ -209,11 +160,11 @@ public class GameManager : MonoBehaviour
         hints.Add("No that's fake");
         hints.Add("Ok wait");
         hints.Add("No I will report you");
-       
+
         ClearDrop();
-        
+
         AddEmptyItem();
-        
+
         mydrop.AddOptions(hints);
 
 
@@ -222,7 +173,6 @@ public class GameManager : MonoBehaviour
         {
             ValueChanged(mydrop);
         }
-
 
         );
 
@@ -239,11 +189,10 @@ public class GameManager : MonoBehaviour
     public void AddEmptyItem()
     {
         TMP_Dropdown.OptionData newdata;
-        
+
         newdata = new TMP_Dropdown.OptionData();
         newdata.text = "";
         mydrop.options.Add(newdata);
-
     }
 
     public void Ignore()
@@ -252,7 +201,6 @@ public class GameManager : MonoBehaviour
 
         IEnumerator Text()  //  <-  its a standalone method
         {
-
             yield return new WaitForSeconds(1);
 
             AddMessage($" Anonymous: Ah! Well done for ignoring my message ", MessageType.Bot);
@@ -279,7 +227,7 @@ public class GameManager : MonoBehaviour
         /*bool Win = Middle.Win;
         VictoryChecker VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
         VC.Button(Win);*/
-        if(Middle.Win)
+        if (Middle.Win)
         {
             Win();
         }
@@ -309,7 +257,6 @@ public class GameManager : MonoBehaviour
 
         IEnumerator Text()  //  <-  its a standalone method
         {
-
             yield return new WaitForSeconds(2);
             AddMessage($" Anonymous: Hello my friend how are you ? ", MessageType.Bot);
         }
@@ -336,12 +283,9 @@ public class GameManager : MonoBehaviour
 
                 IEnumerator Text()  //  <-  its a standalone method
                 {
-
                     yield return new WaitForSeconds(2);
-
-
-
                     AddMessage($" Anonymous: {evt.Response.Text} ", MessageType.Bot);
+                    NextHints();
                 };
             };
         }
