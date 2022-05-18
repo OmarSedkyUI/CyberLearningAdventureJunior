@@ -286,10 +286,10 @@ public class GameManager : MonoBehaviour
         else
         {
             healthBar.DecHealth(10);
-            /*Next.gameObject.SetActive(false);
+            Next.gameObject.SetActive(false);
             RemoveMessage();
             StartCoroutine(Wait());
-            StartBot();*/
+            StartBot();
         }
     }
 

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateController : MonoBehaviour
+public class Gate2Controller : MonoBehaviour
 {
     
     private Animator anim;
-    public InteractableTerminal it;
+    public Terminal_2 it;
     [SerializeField] private Transform player;
 
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class GateController : MonoBehaviour
             anim.SetBool("Openning", true);
         }
 
-        if(player.position.x > 183.6346)
+        if(player.position.x > 295)
         {
             anim.SetBool("Openning", false);
         }
