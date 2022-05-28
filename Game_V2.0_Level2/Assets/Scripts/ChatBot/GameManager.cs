@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     Button Next;
 
-    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private Level2_HealthBar healthBar;
 
     //public VictoryChecker VC;
 
