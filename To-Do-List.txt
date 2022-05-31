@@ -4,8 +4,9 @@ after finals:
 1- continue after lvl complete
 2- level 3
 3- scoreboard
-4 - settings
-5 - Documentation (Game 2 screenshots)
+4- settings
+5- Documentation (Game 2 screenshots)
+6- Health bar damage effect (David)
 
 
 
@@ -14,7 +15,6 @@ b4 FINALS:
 2- buttons (Ahmed)
 3- skins (Ahmed) python code
 4- bugs player
-5- next prev level button
 6- lvl 2 final boss links (David + Omar)
 7- rewarding system (implemented/ Abdo + Omar)
 8- Documentation (Game 2 screenshots)
