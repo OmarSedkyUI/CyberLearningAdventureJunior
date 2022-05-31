@@ -22,6 +22,9 @@ public class Levels : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Level_2 = StaticLevel.Level_2;
+        Level_3 = StaticLevel.Level_3;
+        
         if(sceneName == "Level1")
         {
             Prev.enabled = false;

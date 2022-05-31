@@ -51,14 +51,15 @@ public class Level1_Friend : MonoBehaviour
                     Box.SetActive(true);
                     if (index >= lines1.Length)
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
+
                         index = -1;
                         text.text = lines5[0];
                         Box.SetActive(false);
                     }
                     else
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
                         text.text = lines1[index];
                     }
                     index += 1;
@@ -68,7 +69,7 @@ public class Level1_Friend : MonoBehaviour
             {
                 button.SetActive(false);
                 Box.SetActive(false);
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             }
         }
 
@@ -90,14 +91,14 @@ public class Level1_Friend : MonoBehaviour
                     Box.SetActive(true);
                     if (index >= lines2.Length)
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
                         index = -1;
                         text.text = lines5[0];
                         Box.SetActive(false);
                     }
                     else
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
                         text.text = lines2[index];
                     }
                     index += 1;
@@ -107,7 +108,7 @@ public class Level1_Friend : MonoBehaviour
             {
                 button.SetActive(false);
                 Box.SetActive(false);
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             }
         }
 
@@ -129,14 +130,14 @@ public class Level1_Friend : MonoBehaviour
                     Box.SetActive(true);
                     if (index >= lines3.Length)
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
                         index = -1;
                         text.text = lines5[0];
                         Box.SetActive(false);
                     }
                     else
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
                         text.text = lines3[index];
                     }
                     index += 1;
@@ -146,7 +147,7 @@ public class Level1_Friend : MonoBehaviour
             {
                 button.SetActive(false);
                 Box.SetActive(false);
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             }
         }
 
@@ -170,7 +171,7 @@ public class Level1_Friend : MonoBehaviour
                     Box.SetActive(true);
                     if (index >= lines4.Length)
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
                         index = -1;
                         text.text = lines5[0];
                         Box.SetActive(false);
@@ -178,7 +179,7 @@ public class Level1_Friend : MonoBehaviour
                     }
                     else
                     {
-                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
                         text.text = lines4[index];
                     }
                     index += 1;
@@ -188,7 +189,7 @@ public class Level1_Friend : MonoBehaviour
             {
                 button.SetActive(false);
                 Box.SetActive(false);
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             }
         }
 

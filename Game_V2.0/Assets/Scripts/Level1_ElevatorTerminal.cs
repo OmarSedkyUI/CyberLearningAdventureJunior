@@ -32,13 +32,13 @@ public class Level1_ElevatorTerminal : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && Vector2.Distance(player.position, transform.position) < 2)
         {
-            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
             Box.SetActive(true);
             button.SetActive(false);
         }
         else if (Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
         {
-            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             Box.SetActive(false);
             button.SetActive(false);
         }

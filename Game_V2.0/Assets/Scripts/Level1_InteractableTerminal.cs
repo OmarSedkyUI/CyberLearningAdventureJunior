@@ -23,11 +23,11 @@ public class Level1_InteractableTerminal : MonoBehaviour
             Box.SetActive(true);
             button.SetActive(false);
             Error.enabled = true;
-            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
         }
         else if (Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
         {
-            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             Box.SetActive(false);
             button.SetActive(false);
         }
@@ -45,7 +45,7 @@ public class Level1_InteractableTerminal : MonoBehaviour
         {
             Level1_Passwords.Pass = inputField.text;
             Box.SetActive(false);
-            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             isopened = true;
             enabled = false;
         }

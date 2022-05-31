@@ -59,12 +59,12 @@ public class Level1_Terminal3 : MonoBehaviour
                     CongratsBox.SetActive(false);
                     text.text = "Well Done!";
                     done = true;
-                    GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                    GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
                 }
                 else
                 {
                     CongratsBox.SetActive(true);
-                    GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                    GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
                     text.text = lines[index];
                     if (oneApple)
                     {
@@ -78,12 +78,12 @@ public class Level1_Terminal3 : MonoBehaviour
             {
                 ImprovePassBox.SetActive(true);
                 Error.enabled = false;
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
             }
         }
         else if (Vector2.Distance(player.position, transform.position) > 2f && Vector2.Distance(player.position, transform.position) < 2.5f)
         {
-            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+            GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
             ImprovePassBox.SetActive(false);
             CongratsBox.SetActive(false);
             button.SetActive(false);
@@ -96,7 +96,7 @@ public class Level1_Terminal3 : MonoBehaviour
             {
                 ImprovePassBox.SetActive(false);
                 Error.enabled = false;
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
                 CongratsBox.SetActive(true);
                 index += 1;
                 if (oneApple)

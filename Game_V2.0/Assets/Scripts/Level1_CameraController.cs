@@ -41,7 +41,7 @@ public class Level1_CameraController : MonoBehaviour
 
             else if (player.position.x >= 100.34f && player.position.y >= 23f && Level1_Hacker.BossDialogue)
             {
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
                 transform.position = Vector3.MoveTowards(transform.position, CameraPos1.transform.position, 30 * Time.deltaTime);
             }
 
@@ -55,7 +55,7 @@ public class Level1_CameraController : MonoBehaviour
             }
             else if (Level1_Hacker.WinScene)
             {
-                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+                GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
                 transform.position = Vector3.MoveTowards(transform.position, CameraPosBoss.transform.position, 30 * Time.deltaTime);
             }
             else

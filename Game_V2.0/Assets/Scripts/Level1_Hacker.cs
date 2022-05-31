@@ -81,7 +81,7 @@ public class Level1_Hacker : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         healthBar.DecHealth(1 * Time.deltaTime);
         
-        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = false;
+        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = true;
         PasswordBox.SetActive(true);
         if(Input.GetKeyDown(KeyCode.Return))
         {

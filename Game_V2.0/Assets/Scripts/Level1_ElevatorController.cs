@@ -40,7 +40,7 @@ public class Level1_ElevatorController : MonoBehaviour
     public void ButtonPress(int lvl)
     {
         level = lvl;
-        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().enabled = true;
+        GameObject.Find("Player").GetComponent<Level1_PlayerMovement>().stop = false;
         Box.SetActive(false);
     }
 }
