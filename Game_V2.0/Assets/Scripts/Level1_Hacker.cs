@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Level1_Hacker : MonoBehaviour
 {
@@ -90,8 +91,8 @@ public class Level1_Hacker : MonoBehaviour
         {
             if(WritePass)
             {
-                string path = "D:/Graduation Project/CyberLearningAdventureJunior/Game_V2.0/Assets/UserPassword.txt";
-                StreamWriter writer = new StreamWriter(path, true);
+                string path = "D:/CyberLearningAdventureJunior/Game_V2.0/Assets/UserPassword.txt";
+                StreamWriter writer = new StreamWriter(path, false);
                 writer.WriteLine(Level1_Passwords.Pass);
                 writer.Close();
                 WritePass = false;
@@ -99,15 +100,36 @@ public class Level1_Hacker : MonoBehaviour
             
             PasswordBox.SetActive(false);
             yield return new WaitForSeconds(0.5f);
-            LevelCompleted.SetActive(true);
+
+            WinScene = true;
+            hackerAnimator.Play("Hacker_Shrink", 0, 0.0f);
+            AnimatorStateInfo info = hackerAnimator.GetCurrentAnimatorStateInfo(0);
+
             BossFight = false;
+            
+            StartCoroutine(Wait(info));
+
+            print(Time.time);
+            yield return new WaitForSeconds(3f);
+            print(Time.time);
+
+            LevelCompleted.SetActive(true);
 
             yield return new WaitForSeconds(1f);
 
             LevelCompleted.SetActive(false);
 
-            WinScene = true;
-            hackerAnimator.Play("Hacker_Shrink", 0, 0.0f);
+            yield return new WaitForSeconds(1f);
+
+            StaticLevel.Level_2 = true;
+            SceneManager.LoadScene("Level2");
         }
+    }
+
+    IEnumerator Wait(AnimatorStateInfo info)
+    {
+        print(Time.time);
+        yield return new WaitForSeconds(info.length);
+        print(Time.time);
     }
 }

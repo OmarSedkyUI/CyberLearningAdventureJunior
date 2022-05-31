@@ -49,34 +49,26 @@ public class Level2_CameraController : MonoBehaviour
         }
         else
         {
-           
+            if (player.position.x < 0f)
             {
-                
-                if (player.position.x < 0f)
-                {
-                    transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
-                }
-
-
-                else if (Vector2.Distance(player.position, hacker.position) < 25.60f && player.position.x > 400f)
-                {
-                    rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-                    GameObject.Find("Player").GetComponent<Level2_PlayerMovement>().stop = true;
-                    transform.position = Vector3.MoveTowards(transform.position, CamDest.position, 12 * Time.deltaTime);
-                    if (oneTime)
-                        StartCoroutine(fighting());
-                }
-
-
-                else
-                {
-                    transform.position = new Vector3(player.position.x, player.position.y + 4, transform.position.z);
-                }
+                transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
             }
-                
 
-           
 
+            else if (Vector2.Distance(player.position, hacker.position) < 25.60f && player.position.x > 400f)
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                GameObject.Find("Player").GetComponent<Level2_PlayerMovement>().stop = true;
+                transform.position = Vector3.MoveTowards(transform.position, CamDest.position, 12 * Time.deltaTime);
+                if (oneTime)
+                    StartCoroutine(fighting());
+            }
+
+
+            else
+            {
+                transform.position = new Vector3(player.position.x, player.position.y + 4, transform.position.z);
+            }
         }
 
 
@@ -114,7 +106,7 @@ public class Level2_CameraController : MonoBehaviour
     public void PressPlay()
     {
 
-        anim.Play("CameraAnimation", 0);
+        anim.Play("Level2_CameraAnimation", 0);
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         MainMenu.SetActive(false);
         UI.SetActive(true);

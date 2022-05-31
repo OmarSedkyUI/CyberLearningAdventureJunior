@@ -20,6 +20,8 @@ public class Level1_PlayerMovement : MonoBehaviour
     [SerializeField] private Transform elevator;
     [SerializeField] private AudioSource JumpingSound;
 
+    public bool stop;
+
     private enum MovementState { idle, running, jumping, falling}
 
     // Start is called before the first frame update
@@ -31,6 +33,7 @@ public class Level1_PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         healthbar.SetMaxHealth(100);
         healthbar.SetHealth(50);
+        stop = false;
     }
 
     // Update is called once per frame
@@ -41,18 +44,34 @@ public class Level1_PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
-            JumpingSound.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+            if(!stop)
+            {
+                JumpingSound.Play();
+                rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+            }
         }
-        UpdateAnimation();
+        if (stop)
+            StopPlayerMovement();
+        else
+            UpdateAnimation();
 
         if(transform.position.y < -28.5f)
             transform.position = new Vector3(transform.position.x, -26.83f, transform.position.z);
+
+        if (transform.position.x > 156.26f && transform.position.x < 227.85f && GameObject.Find("Hacker").GetComponent<Level2_Hacker_Level2>().choice == 1)
+        {
+            moveSpeed = 20f;
+        }
+        else
+        {
+            moveSpeed = 15f;
+        }
     }
 
     private void UpdateAnimation()
     {
         MovementState state;
+        rb.constraints = RigidbodyConstraints2D.None;
 
         if (dirx > 0f)
         {
@@ -78,6 +97,15 @@ public class Level1_PlayerMovement : MonoBehaviour
             state = MovementState.falling;
         }
 
+        anim.SetInteger("state", (int)state);
+    }
+
+    private void StopPlayerMovement()
+    {
+        MovementState state;
+
+        state = MovementState.idle;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         anim.SetInteger("state", (int)state);
     }
 
