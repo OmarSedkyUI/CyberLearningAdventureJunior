@@ -2,19 +2,26 @@ PHASE 3:
 
 after finals:
 1- continue after lvl complete (Level 2 Requires Level 3 To Be Implemented) (Level 1 Completed)
+            StaticLevel.Level_3 = true;
+            SceneManager.LoadScene("Level3");
 2- level 3
 3- scoreboard
 4- settings
 5- Documentation (Game 2 screenshots)
 6- Health bar damage effect (David)
+7- bugs player
 
 
 
 b4 FINALS:
-1- replace .enabled in level_1 with .stop
-2- buttons (Ahmed)
-3- skins (Ahmed) python code
-4- bugs player
-6- lvl 2 final boss links (David + Omar)
-7- rewarding system (implemented/ Abdo + Omar)
-8- Documentation (Game 2 screenshots)
+1- buttons (Ahmed)
+2- skins (Ahmed) python code
+3- lvl 2 final boss links (David + Omar)
+4- rewarding system (implemented/ Abdo + Omar)
+5- Documentation (Game 2 screenshots)
+
+
+
+DONE:
+1-Main Menu Level 1 2
+2-replace .enabled in level_1 with .stop
