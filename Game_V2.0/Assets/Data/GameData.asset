@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab53061a544b8b74d9ff20a466001647, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  CurrentPassword: 
+  UserPassword: Paassword@1442
+  LastScene: Level1
   Level1: 0
-  Level2: 0
+  Level2: 1
   Level3: 0
