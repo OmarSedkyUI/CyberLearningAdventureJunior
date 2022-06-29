@@ -31,7 +31,6 @@ public class Level2_PopUpTrigger : MonoBehaviour
         {
             if (OnlyOne)
             {
-                number =1;
                 switch(number)
                 {
                     case 1:

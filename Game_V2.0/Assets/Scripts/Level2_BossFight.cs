@@ -15,12 +15,16 @@ public class Level2_BossFight : MonoBehaviour
 
     private int index;
 
+    private int Size;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
         index = 0;
         link.text = Links[index];
         anim.SetBool("FadeIn", true);
+        Size = Links.Length;
+        Debug.Log(Size);
     }
 
     // Update is called once per frame
