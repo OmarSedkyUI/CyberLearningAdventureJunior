@@ -14,6 +14,8 @@ public class Level2_Terminal_2 : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     private bool isOpened;
 
+    public GameData gameData;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,10 +42,7 @@ public class Level2_Terminal_2 : MonoBehaviour
                     GameObject.Find("Player").GetComponent<Level2_PlayerMovement>().stop = false;
                     Anonymos.SetActive(false);
                     isOpened = true;
-                    string path = "D:/CyberLearningAdventureJunior/Game_V2.0/Assets/UserPassword.txt";
-                    StreamWriter writer = new StreamWriter(path, false);
-                    writer.WriteLine(Level2_Password.Pass);
-                    writer.Close();
+                    gameData.UserPassword = Level2_Password.Pass;
                 }
             }
         }

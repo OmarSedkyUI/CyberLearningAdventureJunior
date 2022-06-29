@@ -12,6 +12,7 @@ public class Level2_InteractableTerminal : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI Error;
     [SerializeField] private Level2_HealthBar healthBar;
+    public GameData gameData;
 
     private bool isOpened;
     string path;
@@ -22,14 +23,8 @@ public class Level2_InteractableTerminal : MonoBehaviour
     void Start()
     {
         isOpened = false;
-        path = "D:/CyberLearningAdventureJunior/Game_V2.0/Assets/UserPassword.txt";
-        reader = new StreamReader(path);
-        password = reader.ReadToEnd();
-        password = password.Replace(" ", "");
-        password = password.Replace("\r", "").Replace("\n", "");
-        reader.Close();
         Error.enabled = false;
-        
+        password = gameData.UserPassword;
     }
 
     // Update is called once per frame

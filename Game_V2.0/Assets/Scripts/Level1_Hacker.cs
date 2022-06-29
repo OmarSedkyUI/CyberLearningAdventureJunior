@@ -29,6 +29,8 @@ public class Level1_Hacker : MonoBehaviour
     static public bool WinScene;
     [SerializeField] private Animator hackerAnimator;
 
+    public GameData gameData;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,11 +93,7 @@ public class Level1_Hacker : MonoBehaviour
         {
             if(WritePass)
             {
-                string path = "D:/CyberLearningAdventureJunior/Game_V2.0/Assets/UserPassword.txt";
-                StreamWriter writer = new StreamWriter(path, false);
-                writer.WriteLine(Level1_Passwords.Pass);
-                writer.Close();
-                WritePass = false;
+                gameData.UserPassword = Level1_Passwords.Pass;
             }
             
             PasswordBox.SetActive(false);
@@ -121,7 +119,7 @@ public class Level1_Hacker : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            StaticLevel.Level_2 = true;
+            gameData.Level2 = true;
             SceneManager.LoadScene("Level2");
         }
     }

@@ -6,24 +6,25 @@ using UnityEngine.UI;
 
 public class Levels : MonoBehaviour
 {
-    public bool Level_2;
-    public bool Level_3;
+    private bool Level_2;
+    private bool Level_3;
     private string sceneName;
     [SerializeField] private Button Prev;
     [SerializeField] private Button Next;
+    public GameData gameData;
     // Start is called before the first frame update
     void Start()
     {
-        Level_2 = StaticLevel.Level_2;
-        Level_3 = StaticLevel.Level_3;
+        Level_2 = gameData.Level2;
+        Level_3 = gameData.Level3;
         sceneName = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Level_2 = StaticLevel.Level_2;
-        Level_3 = StaticLevel.Level_3;
+        Level_2 = gameData.Level2;
+        Level_3 = gameData.Level3;
         
         if(sceneName == "Level1")
         {
@@ -62,8 +63,3 @@ public class Levels : MonoBehaviour
     }
 }
 
-public static class StaticLevel
-{
-    public static bool Level_2 = false;
-    public static bool Level_3 = false;
-}
