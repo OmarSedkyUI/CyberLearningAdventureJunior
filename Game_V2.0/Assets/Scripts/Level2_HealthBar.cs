@@ -27,7 +27,6 @@ public class Level2_HealthBar : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
-       
     }
 
     public void IncHealth(int health)
