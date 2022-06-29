@@ -5,7 +5,7 @@ using TMPro;
 
 public class Level3_PlayerMovement : MonoBehaviour
 {
-    public Level1_HealthBar healthbar;
+    public Level3_HealthBar healthbar;
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
@@ -14,11 +14,10 @@ public class Level3_PlayerMovement : MonoBehaviour
 
     private float dirx = 0f;
     [SerializeField] private LayerMask jumpableGround;
-    [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float jumpforce = 14f;
-    [SerializeField] private GameObject Apple;
-    [SerializeField] private Transform elevator;
     [SerializeField] private AudioSource JumpingSound;
+    [SerializeField] private Transform elevator;
 
     public bool stop;
 
@@ -57,15 +56,6 @@ public class Level3_PlayerMovement : MonoBehaviour
 
         if(transform.position.y < -28.5f)
             transform.position = new Vector3(transform.position.x, -26.83f, transform.position.z);
-
-        if (transform.position.x > 156.26f && transform.position.x < 227.85f && GameObject.Find("Hacker").GetComponent<Level2_Hacker_Level2>().choice == 1)
-        {
-            moveSpeed = 20f;
-        }
-        else
-        {
-            moveSpeed = 15f;
-        }
     }
 
     private void UpdateAnimation()
