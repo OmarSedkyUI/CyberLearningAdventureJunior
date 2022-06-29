@@ -61,5 +61,11 @@ public class Levels : MonoBehaviour
             SceneManager.LoadScene("Level3");
         }
     }
+
+    public void SkinsBtn()
+    {
+        gameData.LastScene = sceneName;
+        SceneManager.LoadScene("Skins");
+    }
 }
 

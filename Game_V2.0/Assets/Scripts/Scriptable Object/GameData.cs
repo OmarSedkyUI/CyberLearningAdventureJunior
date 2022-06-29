@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public string UserPassword;
+    public string LastScene;
     public bool Level1 = true;
     public bool Level2;
     public bool Level3;
