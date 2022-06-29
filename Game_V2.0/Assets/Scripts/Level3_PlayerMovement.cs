@@ -31,7 +31,7 @@ public class Level3_PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         healthbar.SetMaxHealth(100);
-        healthbar.SetHealth(50);
+        healthbar.SetHealth(100);
         stop = false;
     }
 
