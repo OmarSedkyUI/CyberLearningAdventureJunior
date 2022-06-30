@@ -1,21 +1,15 @@
-PHASE 3:
+To-Do:
 
 *1- skins (Ahmed) colors (At least 1)
-
 *2- scoreboard
 *3- settings
-
 *4- rewarding system (implemented/ Abdo + Omar)
-
 *5- Documentation (Game 2 screenshots) (Magdy)
+*6- level 3
 
-6- bugs player
-7- lvl 2 final boss links (David + Omar)
-
-*8- level 3
-9- continue after lvl complete (Level 2 Requires Level 3 To Be Implemented) (Level 1 Completed)
-            StaticLevel.Level_3 = true;
-            SceneManager.LoadScene("Level3");
+Bug:
+1- bugs player
+2- Zoom In Level 2
 
 
 
@@ -25,3 +19,7 @@ DONE:
 2-replace .enabled in level_1 with .stop
 3-buttons (Ahmed)
 4-Health bar damage effect (David)
+5- lvl 2 final boss links (David + Omar)
+6- continue after lvl complete (Level 2 Requires Level 3 To Be Implemented) (Level 1 Completed)
+		gameData.Level3 = true;
+		SceneManager.LoadScene("Level3");
