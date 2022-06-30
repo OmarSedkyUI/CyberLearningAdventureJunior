@@ -16,4 +16,7 @@ MonoBehaviour:
   LastScene: Level1
   Level1: 0
   Level2: 1
-  Level3: 0
+  Level3: 1
+  Skin1: 0
+  Skin2: 0
+  Skin3: 0
