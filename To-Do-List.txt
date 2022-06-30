@@ -1,5 +1,7 @@
 To-Do:
 
+Main - Game Name in Menu
+
 *1- skins (Ahmed) colors (At least 1)
 *2- scoreboard
 *3- settings
@@ -23,3 +25,7 @@ DONE:
 6- continue after lvl complete (Level 2 Requires Level 3 To Be Implemented) (Level 1 Completed)
 		gameData.Level3 = true;
 		SceneManager.LoadScene("Level3");
+		
+		
+OMAR:
+1- Import all graphics
