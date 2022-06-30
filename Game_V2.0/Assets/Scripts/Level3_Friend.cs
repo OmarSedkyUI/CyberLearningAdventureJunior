@@ -9,6 +9,7 @@ public class Level3_Friend : MonoBehaviour
     [SerializeField] private GameObject dialogue;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private string[] lines;
+    [SerializeField] private GameObject Complete;
 
 
     private SpriteRenderer sp;
@@ -47,7 +48,7 @@ public class Level3_Friend : MonoBehaviour
             if (index >= lines.Length)
             {
                 dialogue.SetActive(false);
-                GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
+                Complete.SetActive(true);
             }
             else
             {
