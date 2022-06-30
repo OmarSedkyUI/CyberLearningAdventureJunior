@@ -23,16 +23,16 @@ public class Level2_CameraController : MonoBehaviour
     private bool oneTime;
     private int index;
     Animator anim;
+    bool stopFighting;
     private void Start()
     {
-        
         UI.SetActive(false);
         anim = GetComponent<Animator>();
         defaultCam = GetComponent<Camera>().orthographicSize;
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         oneTime = true;
         index = 1;
-        
+        stopFighting = false;
     }
 
     // Update is called once per frame
@@ -54,7 +54,6 @@ public class Level2_CameraController : MonoBehaviour
                 transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
             }
 
-
             else if (Vector2.Distance(player.position, hacker.position) < 25.60f && player.position.x > 400f)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY;
@@ -64,33 +63,33 @@ public class Level2_CameraController : MonoBehaviour
                     StartCoroutine(fighting());
             }
 
-
             else
             {
                 transform.position = new Vector3(player.position.x, player.position.y + 4, transform.position.z);
             }
         }
 
-
-
         if (player.position.x > 301.2252f && player.position.x < 432f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
             GetComponent<Camera>().orthographicSize += 0.005f;
         else if(player.position.x > 432f && GetComponent<Camera>().orthographicSize >= defaultCam + 2)
             GetComponent<Camera>().orthographicSize -= 0.02f;
 
-
         if(!oneTime)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if(!stopFighting)
             {
-                if (index >= lines.Length)
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    FinalDialogue.SetActive(false);
-                    FightGame.SetActive(true);
+                    if (index >= lines.Length)
+                    {
+                        FinalDialogue.SetActive(false);
+                        FightGame.SetActive(true);
+                        stopFighting = true;
+                    }
+                    else
+                        text.text = lines[index];
+                    index += 1;
                 }
-                else
-                    text.text = lines[index];
-                index += 1;
             }
         }
     }
@@ -101,11 +100,9 @@ public class Level2_CameraController : MonoBehaviour
         text.text = lines[0];
         yield return new WaitForSecondsRealtime(1.5f);
         FinalDialogue.SetActive(true);
-        
     }
     public void PressPlay()
     {
-
         anim.Play("Level2_CameraAnimation", 0);
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         MainMenu.SetActive(false);
@@ -119,5 +116,4 @@ public class Level2_CameraController : MonoBehaviour
         GameObject.Find("Player").GetComponent<Level2_PlayerMovement>().stop = false;
         anim.enabled = false;
     }
-    
 }

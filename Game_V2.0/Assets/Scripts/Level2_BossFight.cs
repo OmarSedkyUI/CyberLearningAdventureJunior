@@ -7,6 +7,7 @@ public class Level2_BossFight : MonoBehaviour
 {
     [SerializeField] private GameObject FightGame;
     [SerializeField] private GameObject LevelComplete;
+    [SerializeField] private GameObject Complete;
     [SerializeField] private TextMeshProUGUI link;
     [SerializeField] private string[] Links;
     [SerializeField] private string[] FakeLinks;
@@ -15,27 +16,18 @@ public class Level2_BossFight : MonoBehaviour
 
     private int index;
 
-    private int Size;
-
     private void Start()
     {
         anim = GetComponent<Animator>();
         index = 0;
         link.text = Links[index];
         anim.SetBool("FadeIn", true);
-        Size = Links.Length;
-        Debug.Log(Size);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (index >= Links.Length)
-        {
-            FightGame.SetActive(false);
-            LevelComplete.SetActive(true);
-        } 
     }
 
     IEnumerator LoadNextLink()
@@ -59,8 +51,14 @@ public class Level2_BossFight : MonoBehaviour
             link.color = Color.red;
             healthbar.DecHealth(10);
         }
-        if(index < Links.Length)
+        if (index < (Links.Length - 1))
             StartCoroutine(LoadNextLink());
+        else
+        {
+            FightGame.SetActive(false);
+            LevelComplete.SetActive(true);
+            Complete.SetActive(true);
+        }
     }
 
     public void PressNo()
@@ -72,8 +70,14 @@ public class Level2_BossFight : MonoBehaviour
             link.color = Color.red;
             healthbar.DecHealth(10);
         }
-        if (index < Links.Length)
+        if (index < (Links.Length - 1))
             StartCoroutine(LoadNextLink());
+        else
+        {
+            FightGame.SetActive(false);
+            LevelComplete.SetActive(true);
+            Complete.SetActive(true);
+        }
     }
 
     private string CheckFakeLink(string li)
