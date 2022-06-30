@@ -7,7 +7,6 @@ Main - Game Name in Menu
 *3- settings
 *4- rewarding system (implemented/ Abdo + Omar)
 *5- Documentation (Game 2 screenshots) (Magdy)
-*6- level 3
 
 Bug:
 1- bugs player
@@ -26,6 +25,13 @@ DONE:
 		gameData.Level3 = true;
 		SceneManager.LoadScene("Level3");
 		
+*7- level 3
+		
 		
 OMAR:
 1- Import all graphics
+
+
+
+Scroll remove
+auto scroll
