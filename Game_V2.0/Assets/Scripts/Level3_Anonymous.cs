@@ -8,6 +8,7 @@ public class Level3_Anonymous : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform dest;
     [SerializeField] private Transform dest2;
+    [SerializeField] private Transform dest3;
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject dialogue;
     [SerializeField] private TextMeshProUGUI text;
@@ -24,6 +25,7 @@ public class Level3_Anonymous : MonoBehaviour
     private bool endConv;
     private bool oneTime;
     private bool oneTime2;
+    public bool run2;
     [SerializeField] private GameObject ChatBot;
     [SerializeField] private GameManager gameManager;
 
@@ -40,6 +42,7 @@ public class Level3_Anonymous : MonoBehaviour
         endConv = false;
         oneTime = true;
         oneTime2 = true;
+        run2 = false;
     }
 
     // Update is called once per frame
@@ -70,6 +73,7 @@ public class Level3_Anonymous : MonoBehaviour
         if (GameObject.Find("Terminal").GetComponent<Level3_Terminal>().anonTeleport)
         {
             transform.position = dest2.position;
+            GameObject.Find("Terminal").GetComponent<Level3_Terminal>().anonTeleport = false;
         }
 
         if (transform.position == dest.position)
@@ -94,6 +98,21 @@ public class Level3_Anonymous : MonoBehaviour
                 endConv = false;
                 oneTime2 = false;
             }
+        }
+
+        if(run2)
+        {
+            var step = speed * Time.deltaTime;
+            sp.flipX = false;
+            anim.SetBool("IsRunning", true);
+            transform.position = Vector3.MoveTowards(transform.position, dest3.position, step);
+        }
+
+        if (transform.position == dest3.position)
+        {
+            anim.SetBool("IsRunning", false);
+            gameObject.SetActive(false);
+            run2 = false;
         }
     }
 

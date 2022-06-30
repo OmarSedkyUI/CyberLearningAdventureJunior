@@ -22,7 +22,7 @@ public enum MessageType
 public class GameManager :  MonoBehaviour
 {
     public GameObject chatPanel, textObject, ChatBot, HackerTracker;
-
+    
     public GameObject Choice1;
     public GameObject Choice2;
 
@@ -162,6 +162,8 @@ public class GameManager :  MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         ChatBot.SetActive(false);
         GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
+        yield return new WaitForSeconds(1f);
+        GameObject.Find("Anonymous").GetComponent<Level3_Anonymous>().run2 = true;
     }
 
     IEnumerator C2Skeptical()
@@ -178,5 +180,7 @@ public class GameManager :  MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         ChatBot.SetActive(false);
         GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
+        yield return new WaitForSeconds(1f);
+        GameObject.Find("Anonymous").GetComponent<Level3_Anonymous>().run2 = true;
     }
 }
