@@ -19,86 +19,43 @@ public enum MessageType
     User, Bot
 }
 
-
-
-public class BotDialog : Dialog
+public class GameManager :  MonoBehaviour
 {
-    Button Next = Middle.Next;
+    public GameObject chatPanel, textObject, ChatBot, HackerTracker;
 
-    [Expression("Hi I am fine and you ")]
+    public GameObject Choice1;
+    public GameObject Choice2;
 
-    [Expression("Great and you?")]
-    public void DoubleGreetings(Context context, Result result)
-    {
-        result.SendResponse("I am doing great ");
-        result.SendResponse("I am one of the creators of the game and our team is giving players unlimited hints to bypass next levels ");
-        result.SendResponse("Just provide me with your username to link the hints with your account, and your password as well for authentication purposes");
-    }
-
-
-    [Expression("Hello ")]
-
-    public void Greetings(Context context, Result result)
-    {
-        result.SendResponse("Sounds Good!");
-        result.SendResponse("I am one of the creators of the game and our team is giving players unlimited hints to bypass next levels ");
-        result.SendResponse("Just provide me with your username to link the hints with your account, and your password as well for authentication purposes");
-    }
-
-    [Expression("Yes sure ")]
-    [Expression("Ok wait")]
-    [Expression("Yeah !!! ")]
-    public void Approval(Context context, Result result)
-    {
-        result.SendResponse("You are trapped , I am a hacker and now I got your credentials thanks :))))) ");
-
-        Middle.Win = false;
-        Next.gameObject.SetActive(true);
-    }
-
-    [Expression("No that's fake")]
-
-    [Expression("No I will report you")]
-    public void Denial(Context context, Result result)
-    {
-        result.SendResponse("Ahhh you caught me , well done !! Stay Safe Online!!!");
-
-        Middle.Win = true;
-        Next.gameObject.SetActive(true);
-    }
-}
-
-public static class Middle
-{
-    public static bool Win = false;
-    public static Button Next;
-}
-
-public class GameManager : MonoBehaviour
-{
-    OscovaBot MainBot;
-
-    public GameObject chatPanel, textObject, ChatBot;
-    public InputField chatBox;
-    public TMPro.TMP_Dropdown mydrop;
+    int choice;
 
     public Color UserColor, BotColor;
 
-    Button Next;
-
-    [SerializeField] private Level2_HealthBar healthBar;
-
-    //public VictoryChecker VC;
+    [SerializeField] private Level3_HealthBar healthBar;
 
     List<Message> Messages = new List<Message>();
 
     private void Awake()
     {
-        Middle.Next = GameObject.Find("Next").GetComponent<Button>();
-        Next = Middle.Next;
-        Next.gameObject.SetActive(false);
         ChatBot = GameObject.Find("ChatBot");
-        ChatBot.gameObject.SetActive(false);
+        ChatBot.SetActive(false);
+        HackerTracker.gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        switch (choice)
+        {
+            case 1: 
+                Choice1.SetActive(true);
+                break;
+            case 2: 
+                Choice1.SetActive(false);
+                Choice2.SetActive(true);
+                break;
+            default: 
+                break;
+        }
+
     }
 
     public void AddMessage(string messageText, MessageType messageType)
@@ -116,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         newMessage.TextObject = newText.GetComponent<TextMeshProUGUI>();
         newMessage.TextObject.text = messageText;
-        newMessage.TextObject.color = messageType == MessageType.User ? UserColor : BotColor;
+        newMessage.TextObject.color = messageType == MessageType.User ? UserColor :  BotColor;
 
         Messages.Add(newMessage);
     }
@@ -130,168 +87,96 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SendMessageToBot()
-    {
-        var userMessage = mydrop.options[mydrop.value].text;
-
-        if (!string.IsNullOrEmpty(userMessage))
-        {
-            Debug.Log($"OscovaBot:[USER] {userMessage} ");
-            AddMessage($" You: {userMessage} ", MessageType.User);
-            var request = MainBot.MainUser.CreateRequest(userMessage);
-            var evaluationResult = MainBot.Evaluate(request);
-            evaluationResult.Invoke();
-
-            //chatBox.Select();
-            //chatBox.text = "";
-        }
-    }
-
-    public void SetInputField()
-    {
-        chatBox.text = mydrop.options[mydrop.value].text;
-    }
-
-    public void NextHints()
-    {
-        List<string> hints = new List<string>();
-
-        hints.Add("Yes sure");
-        hints.Add("No that's fake");
-        hints.Add("Ok wait");
-        hints.Add("No I will report you");
-
-        ClearDrop();
-
-        AddEmptyItem();
-
-        mydrop.AddOptions(hints);
-
-
-        mydrop.onValueChanged.AddListener(delegate
-
-        {
-            ValueChanged(mydrop);
-        }
-
-        );
-
-    }
-
-    public void ValueChanged(TMPro.TMP_Dropdown droppp)
-    {
-        ClearDrop();
-    }
-    public void ClearDrop()
-    {
-        mydrop.ClearOptions();
-    }
-    public void AddEmptyItem()
-    {
-        TMP_Dropdown.OptionData newdata;
-
-        newdata = new TMP_Dropdown.OptionData();
-        newdata.text = "";
-        mydrop.options.Add(newdata);
-    }
-
-    public void Ignore()
-    {
-        StartCoroutine(Text());
-
-        IEnumerator Text()  //  <-  its a standalone method
-        {
-            yield return new WaitForSeconds(1);
-
-            AddMessage($" Anonymous: Ah! Well done for ignoring my message ", MessageType.Bot);
-
-            yield return new WaitForSeconds(2);
-
-            /*VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
-            VC.Button(true);*/
-            Win();
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SendMessageToBot();
-        }
-    }
-
-    public void Press()
-    {
-        /*bool Win = Middle.Win;
-        VictoryChecker VC = GameObject.FindObjectOfType(typeof(VictoryChecker)) as VictoryChecker;
-        VC.Button(Win);*/
-        if (Middle.Win)
-        {
-            Win();
-        }
-        else
-        {
-            healthBar.DecHealth(10);
-            Next.gameObject.SetActive(false);
-            RemoveMessage();
-            StartCoroutine(Wait());
-            StartBot();
-        }
-    }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1);
-    }
-
-    private void Win()
-    {
-        ChatBot.gameObject.SetActive(false);
-    }
-
     public void StartBot()
     {
         StartCoroutine(Text());
 
         IEnumerator Text()  //  <-  its a standalone method
         {
-            yield return new WaitForSeconds(2);
-            AddMessage($" Anonymous: Hello my friend how are you ? ", MessageType.Bot);
+            AddMessage($"Anonymous: I found an app that can track down hacker.", MessageType.Bot);
+            AddMessage("", MessageType.Bot);
+            yield return new WaitForSeconds(1.5f);
+            AddMessage($"Anonymous: I need to login with your account.", MessageType.Bot);
+            yield return new WaitForSeconds(1.5f);
+            choice = 1;
         }
+    }
 
-        try
+    public void Press(int Num)
+    {
+        int SwitchChoice = int.Parse(choice.ToString() + Num.ToString());
+        switch (SwitchChoice)
         {
-            MainBot = new OscovaBot();
-            OscovaBot.Logger.LogReceived += (s, o) =>
-            {
-                Debug.Log($"OscovaBot: {o.Log}");
-            };
-
-            MainBot.Dialogs.Add(new BotDialog());
-            //Knowledge.json file referenced without extension.
-            //Workspace file extensions must be changed from .west to .json
-            //var txtAsset = (TextAsset)Resources.Load("knowledge", typeof(TextAsset));
-            //var tileFile = txtAsset.text;
-            //MainBot.ImportWorkspace("tileFile");
-            MainBot.Trainer.StartTraining();
-
-            MainBot.MainUser.ResponseReceived += (sender, evt) =>
-            {
-                StartCoroutine(Text());
-
-                IEnumerator Text()  //  <-  its a standalone method
-                {
-                    yield return new WaitForSeconds(2);
-                    AddMessage($" Anonymous: {evt.Response.Text} ", MessageType.Bot);
-                    NextHints();
-                };
-            };
+            case 11: 
+                StartCoroutine(C1Reject());
+                break;
+            case 12: 
+                StartCoroutine(C1Skeptical());
+                break;
+            case 21: 
+                StartCoroutine(C2Reject());
+                break;
+            case 22:
+                StartCoroutine(C2Skeptical());
+                break;
+            default: 
+                break;
         }
-        catch (Exception ex)
-        {
-            Debug.LogError(ex);
-        }
+    }
+    public void Accept()
+    {
+        HackerTracker.SetActive(true);
+    }
+    IEnumerator C1Reject()
+    {
+        Choice1.transform.GetChild(1).GetComponent<Button>().enabled = false;
+        Choice1.transform.GetChild(2).GetComponent<Button>().enabled = false;
+        AddMessage($"You: I do not normally give my account info to strangers.", MessageType.User);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"Anonymous: If you want to beat the hacker you need to trust me.", MessageType.Bot);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"Anonymous: Help me help you.", MessageType.Bot);
+        choice = 2;
+    }
+    IEnumerator C1Skeptical()
+    {
+        Choice1.transform.GetChild(1).GetComponent<Button>().enabled = false;
+        Choice1.transform.GetChild(2).GetComponent<Button>().enabled = false;
+        AddMessage($"You: Why do you need my account ?", MessageType.User);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"Anonymous: Because the hacker hacked my account and locked me out of it.", MessageType.Bot);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"Anonymous: You need to trust me.", MessageType.Bot);
+        choice = 2;
+    }
+
+    IEnumerator C2Reject()
+    {
+        Choice2.transform.GetChild(1).GetComponent<Button>().enabled = false;
+        Choice2.transform.GetChild(2).GetComponent<Button>().enabled = false;
+        AddMessage($"You: There must be another way to beat the hacker.", MessageType.User);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"You: I will never share my account info with you.", MessageType.User);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"Anonymous: Okay then, goodluck defeating the hacker alone.", MessageType.Bot);
+        yield return new WaitForSeconds(2.5f);
+        ChatBot.SetActive(false);
+        GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
+    }
+
+    IEnumerator C2Skeptical()
+    {
+        Choice2.transform.GetChild(1).GetComponent<Button>().enabled = false;
+        Choice2.transform.GetChild(2).GetComponent<Button>().enabled = false;
+        AddMessage($"You: Why don't you make another account ?", MessageType.User);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"Anonymous: I can not right now.", MessageType.Bot);
+        yield return new WaitForSeconds(1.5f);
+        AddMessage($"You: You sound sussy.", MessageType.User);
+        yield return new WaitForSeconds(0.5f);
+        AddMessage($"You: I do not trust you.", MessageType.User);
+        yield return new WaitForSeconds(2.5f);
+        ChatBot.SetActive(false);
+        GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
     }
 }

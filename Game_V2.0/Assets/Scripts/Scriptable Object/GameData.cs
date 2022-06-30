@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GameData : ScriptableObject
 {
+    public string UserUsername;
     public string UserPassword;
     public string LastScene;
     public bool Level1 = true;
@@ -15,4 +16,7 @@ public class GameData : ScriptableObject
     public bool Skin1;
     public bool Skin2;
     public bool Skin3;
+    public bool Skin4;
+    public bool Skin5;
+    public bool Skin6;
 }

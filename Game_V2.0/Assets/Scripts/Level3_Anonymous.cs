@@ -7,6 +7,7 @@ public class Level3_Anonymous : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform dest;
+    [SerializeField] private Transform dest2;
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject dialogue;
     [SerializeField] private TextMeshProUGUI text;
@@ -17,8 +18,14 @@ public class Level3_Anonymous : MonoBehaviour
     private SpriteRenderer sp;
     private Animator anim;
     public float speed;
+    private bool conv1;
     private bool conv2;
+    private bool conv3;
     private bool endConv;
+    private bool oneTime;
+    private bool oneTime2;
+    [SerializeField] private GameObject ChatBot;
+    [SerializeField] private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +34,12 @@ public class Level3_Anonymous : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         index1 = 0;
         index2 = 0;
+        conv1 = true;
         conv2 = false;
+        conv3 = false;
         endConv = false;
+        oneTime = true;
+        oneTime2 = true;
     }
 
     // Update is called once per frame
@@ -56,18 +67,39 @@ public class Level3_Anonymous : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, dest.position, step);
         }
 
-        if(transform.position == dest.position)
+        if (GameObject.Find("Terminal").GetComponent<Level3_Terminal>().anonTeleport)
+        {
+            transform.position = dest2.position;
+        }
+
+        if (transform.position == dest.position)
         {
             GameObject.Find("Terminal").GetComponent<Level3_Terminal>().anonymousComing = false;
             anim.SetBool("IsRunning", false);
-            conv2 = true;
+            conv1 = false;
+            if (oneTime)
+            {
+                conv2 = true;
+                endConv = false;
+                oneTime = false;
+            }
         }
-            
+
+        if (transform.position == dest2.position)
+        {
+            conv1 = false;
+            if (oneTime2)
+            {
+                conv3 = true;
+                endConv = false;
+                oneTime2 = false;
+            }
+        }
     }
 
     void Conversation()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !conv2)
+        if (Input.GetKeyDown(KeyCode.E) && conv1 && !conv2 && !conv3 && !ChatBot.activeSelf)
         {
             button.SetActive(false);
             dialogue.SetActive(true);
@@ -75,6 +107,7 @@ public class Level3_Anonymous : MonoBehaviour
             {
                 dialogue.SetActive(false);
                 GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
+                endConv = true;
             }
             else
             {
@@ -84,7 +117,7 @@ public class Level3_Anonymous : MonoBehaviour
             index1 += 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && conv2)
+        if (Input.GetKeyDown(KeyCode.E) && conv2 && !conv3 && !ChatBot.activeSelf)
         {
             button.SetActive(false);
             dialogue.SetActive(true);
@@ -93,6 +126,12 @@ public class Level3_Anonymous : MonoBehaviour
                 dialogue.SetActive(false);
                 GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
                 endConv = true;
+                conv2 = false;
+            }
+            else if (index2 == 2)
+            {
+                GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = true;
+                text.text = lines2[index2] + GameObject.Find("Terminal").GetComponent<Level3_Terminal>().PinCode.ToString();
             }
             else
             {
@@ -101,6 +140,21 @@ public class Level3_Anonymous : MonoBehaviour
             }
             index2 += 1;
         }
+
+        if (Input.GetKeyDown(KeyCode.E) && !conv2 && conv3 && !ChatBot.activeSelf)
+        {
+            button.SetActive(false);
+            GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = true;
+            conv3 = false;
+            StartChatBot();
+        }
+    }
+
+    private void StartChatBot()
+    {
+        ChatBot.SetActive(true);
+        gameManager.StartBot();
+        endConv = true;
     }
 
 }

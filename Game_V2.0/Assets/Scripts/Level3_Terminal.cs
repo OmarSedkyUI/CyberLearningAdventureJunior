@@ -12,14 +12,18 @@ public class Level3_Terminal : MonoBehaviour
     [SerializeField] private GameObject PinBox;
     [SerializeField] private TMP_InputField inputField;
     
-    int PinCode;
+    public int PinCode;
     public bool anonymousComing;
+    public bool anonTeleport;
 
     // Start is called before the first frame update
     void Start()
     {
-        PinCode = 52234;
+
+        string pin = Random.Range(0, 99999).ToString("00000");
+        PinCode = int.Parse(pin);
         anonymousComing = false;
+        anonTeleport = false;
     }
 
     // Update is called once per frame
@@ -58,6 +62,7 @@ public class Level3_Terminal : MonoBehaviour
         if(player.position.x > 84f)
         {
             Gate.SetBool("IsOpening", false);
+            anonTeleport = true;
         }
     }
 }
