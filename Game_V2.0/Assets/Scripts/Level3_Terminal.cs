@@ -59,7 +59,7 @@ public class Level3_Terminal : MonoBehaviour
         else
             button.SetActive(false);
 
-        if(player.position.x > 84f)
+        if(player.position.x > 84f && player.position.x < 86f)
         {
             Gate.SetBool("IsOpening", false);
             anonTeleport = true;

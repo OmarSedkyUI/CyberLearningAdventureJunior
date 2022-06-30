@@ -5,15 +5,18 @@ using UnityEngine;
 public class Level3_CameraController : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private Transform CameraDest;
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject UI;
-
+    public float speed;
     Animator anim;
+    public bool destReached;
 
     private void Start()
     {
         UI.SetActive(false);
         anim = GetComponent<Animator>();
+        destReached = false;
     }
 
     // Update is called once per frame
@@ -31,9 +34,12 @@ public class Level3_CameraController : MonoBehaviour
                 transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
             }
             
-            else if (player.position.x >= 137.5575f)
+            else if (player.position.x >= 140f)
             {
-                transform.position = new Vector3(137.5575f, player.position.y + 4, transform.position.z);
+                var step = speed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, CameraDest.position, step);
+                if(transform.position == CameraDest.position)
+                    destReached = true;
             }
 
             else
