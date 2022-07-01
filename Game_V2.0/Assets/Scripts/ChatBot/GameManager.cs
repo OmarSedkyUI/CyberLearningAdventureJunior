@@ -55,7 +55,10 @@ public class GameManager :  MonoBehaviour
             default: 
                 break;
         }
-
+        if(ChatBot.activeSelf)
+        {
+            GameObject.Find("Scroll View").GetComponent<ScrollRect>().verticalNormalizedPosition = 0;
+        }
     }
 
     public void AddMessage(string messageText, MessageType messageType)
@@ -178,7 +181,7 @@ public class GameManager :  MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         AddMessage($"You: I do not trust you.", MessageType.User);
         yield return new WaitForSeconds(2.5f);
-        ChatBot.SetActive(false);
+        ChatBot.SetActive(false);   
         GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
         yield return new WaitForSeconds(1f);
         GameObject.Find("Anonymous").GetComponent<Level3_Anonymous>().run2 = true;
