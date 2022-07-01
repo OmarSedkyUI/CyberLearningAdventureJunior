@@ -22,6 +22,8 @@ public class Level1_PlayerMovement : MonoBehaviour
 
     public bool stop;
 
+    public GameData gameData;
+
     private enum MovementState { idle, running, jumping, falling}
 
     // Start is called before the first frame update
@@ -34,6 +36,7 @@ public class Level1_PlayerMovement : MonoBehaviour
         healthbar.SetMaxHealth(100);
         healthbar.SetHealth(50);
         stop = false;
+        anim.SetInteger("Skin", gameData.CurrentSkin);
     }
 
     // Update is called once per frame

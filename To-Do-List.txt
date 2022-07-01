@@ -2,15 +2,23 @@ To-Do:
 
 Main - Game Name in Menu
 
-*1- skins (Ahmed) colors (At least 1)
-*2- scoreboard
-*3- settings
-*4- rewarding system (implemented/ Abdo + Omar)
+
+*1- rewarding system (implemented/ Abdo + Omar)
+*2- settings
+3- scoreboard
+*4- Buttons & Panel (Ahmed)
+
+
 *5- Documentation (Game 2 screenshots) (Magdy)
 
 Bug:
 1- bugs player
 2- Zoom In Level 2
+
+Scroll remove
+auto scroll
+remove e from triminal lvl2
+lvl 2 terminal error message wrong
 
 
 
@@ -26,12 +34,8 @@ DONE:
 		SceneManager.LoadScene("Level3");
 		
 *7- level 3
+*8- skins (Ahmed) colors (At least 1)
 		
 		
 OMAR:
 1- Import all graphics
-
-
-
-Scroll remove
-auto scroll

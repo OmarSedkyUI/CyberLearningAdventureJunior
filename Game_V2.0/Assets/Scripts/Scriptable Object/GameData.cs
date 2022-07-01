@@ -13,6 +13,8 @@ public class GameData : ScriptableObject
     public bool Level2;
     public bool Level3;
 
+    public int CurrentSkin;
+
     public bool Skin1;
     public bool Skin2;
     public bool Skin3;

@@ -24,6 +24,8 @@ public class Level2_PlayerMovement : MonoBehaviour
     public bool moveElevator_2;
     public bool stop;
 
+    public GameData gameData;
+
     private enum MovementState { idle, running, jumping, falling}
 
     // Start is called before the first frame update
@@ -37,6 +39,7 @@ public class Level2_PlayerMovement : MonoBehaviour
         moveElevator = false;
         moveElevator_2 = false;
         stop = false;
+        anim.SetInteger("Skin", gameData.CurrentSkin);
     }
 
     // Update is called once per frame

@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserUsername: Player
   UserPassword: Password@1
-  LastScene: Level1
+  LastScene: Level2
   Level1: 0
   Level2: 1
   Level3: 1
+  CurrentSkin: 0
   Skin1: 0
   Skin2: 0
   Skin3: 0
+  Skin4: 0
+  Skin5: 0
+  Skin6: 0
