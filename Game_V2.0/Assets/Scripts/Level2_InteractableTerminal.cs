@@ -30,7 +30,7 @@ public class Level2_InteractableTerminal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(player.position, transform.position) < 2.5f)
+        if(Vector2.Distance(player.position, transform.position) < 2.5f && !isOpened)
         {
             if (!EnterPass.activeSelf)
                 button.SetActive(true);
@@ -53,7 +53,7 @@ public class Level2_InteractableTerminal : MonoBehaviour
                 EnterPass.SetActive(false);
                 GameObject.Find("Player").GetComponent<Level2_PlayerMovement>().stop = false;
                 Error.enabled = false;
-                healthBar.DecHealth(10);
+                healthBar.DecHealth(20);
             }
             else
             {

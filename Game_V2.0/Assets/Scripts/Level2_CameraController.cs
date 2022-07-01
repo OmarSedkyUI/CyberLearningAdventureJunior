@@ -69,8 +69,8 @@ public class Level2_CameraController : MonoBehaviour
             }
         }
 
-        if (player.position.x > 301.2252f && player.position.x < 432f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
-            GetComponent<Camera>().orthographicSize += 0.005f;
+        if (player.position.x > 301.2252f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
+            GetComponent<Camera>().orthographicSize += 0.003f;
         else if(player.position.x > 432f && GetComponent<Camera>().orthographicSize >= defaultCam + 2)
             GetComponent<Camera>().orthographicSize -= 0.02f;
 
