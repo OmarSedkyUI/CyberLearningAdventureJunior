@@ -2,11 +2,9 @@ To-Do:
 
 Main - Game Name in Menu
 
+*1- About
 
-*1- rewarding system (implemented/ Abdo + Omar)
-*2- settings
-3- scoreboard
-*4- Buttons & Panel (Ahmed)
+1- scoreboard
 
 
 *5- Documentation (Game 2 screenshots) (Magdy)
@@ -17,8 +15,6 @@ Bug:
 3- remove e from triminal lvl2
 4- lvl 2 terminal error message wrong
 
-Scroll remove
-auto scroll
 
 
 
@@ -35,6 +31,12 @@ DONE:
 		
 *7- level 3
 *8- skins (Ahmed) colors (At least 1)
+
+*9- Buttons & Panel (Ahmed)
+*10- rewarding system (implemented/ Abdo + Omar)
+
+Scroll remove
+auto scroll
 		
 		
 OMAR:

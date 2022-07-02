@@ -119,6 +119,11 @@ public class Level1_Hacker : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
+            if (healthBar.ReturnHealth() >= 50)
+            {
+                gameData.Lotus = true;
+            }
+
             gameData.Level2 = true;
             SceneManager.LoadScene("Level2");
         }

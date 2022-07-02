@@ -10,6 +10,7 @@ public class Level3_LevelComplete : MonoBehaviour
 
     void Awake()
     {
+        gameData.Golden = true;
         StartCoroutine(Wait());
     }
 

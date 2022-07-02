@@ -11,6 +11,7 @@ public class Level1_InteractableTerminal : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI Error;
     [SerializeField] private GameObject button;
+    public GameData gameData;
 
     void Update()
     {

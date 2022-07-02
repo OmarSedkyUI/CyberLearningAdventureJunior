@@ -15,10 +15,9 @@ public class GameData : ScriptableObject
 
     public int CurrentSkin;
 
-    public bool Skin1;
-    public bool Skin2;
-    public bool Skin3;
-    public bool Skin4;
-    public bool Skin5;
-    public bool Skin6;
+    public bool Lotus;
+    public bool Carnage;
+    public bool Metal;
+    public bool Golden;
+    public bool Invisible;
 }

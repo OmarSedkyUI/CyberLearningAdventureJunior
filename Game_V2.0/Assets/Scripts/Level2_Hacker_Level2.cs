@@ -28,6 +28,7 @@ public class Level2_Hacker_Level2 : MonoBehaviour
     private bool atPosition_2;
     private bool conv;
     public bool passwrodStolen;
+    public GameData gameData;
 
     private void Start()
     {
@@ -147,6 +148,7 @@ public class Level2_Hacker_Level2 : MonoBehaviour
             transform.position = new Vector3(46.23f, -2.019091f, transform.position.z);
             choice = 2;
             transition = false;
+            gameData.Carnage = true;
         }
     }
 

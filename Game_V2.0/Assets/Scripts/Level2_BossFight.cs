@@ -16,12 +16,16 @@ public class Level2_BossFight : MonoBehaviour
 
     private int index;
 
+    private int Correct;
+    public GameData gameData;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
         index = 0;
         link.text = Links[index];
         anim.SetBool("FadeIn", true);
+        Correct = 0;
     }
 
     // Update is called once per frame
@@ -45,7 +49,10 @@ public class Level2_BossFight : MonoBehaviour
     public void PressYes()
     {
         if (CheckFakeLink(link.text).Equals("Legit"))
+        {
             link.color = Color.green;
+            Correct++;
+        }
         else
         {
             link.color = Color.red;
@@ -58,13 +65,20 @@ public class Level2_BossFight : MonoBehaviour
             FightGame.SetActive(false);
             LevelComplete.SetActive(true);
             Complete.SetActive(true);
+            if (Correct >= 7)
+            {
+                gameData.Metal = true;
+            }
         }
     }
 
     public void PressNo()
     {
         if (CheckFakeLink(link.text).Equals("Fake"))
+        {
             link.color = Color.green;
+            Correct++;
+        }
         else
         {
             link.color = Color.red;
@@ -77,6 +91,10 @@ public class Level2_BossFight : MonoBehaviour
             FightGame.SetActive(false);
             LevelComplete.SetActive(true);
             Complete.SetActive(true);
+            if (Correct >= 7)
+            {
+                gameData.Metal = true;
+            }
         }
     }
 

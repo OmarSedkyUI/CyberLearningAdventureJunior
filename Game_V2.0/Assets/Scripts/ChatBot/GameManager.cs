@@ -27,6 +27,8 @@ public class GameManager :  MonoBehaviour
     public GameObject Choice2;
 
     int choice;
+    public GameData gameData;
+    private bool accept;
 
     public Color UserColor, BotColor;
 
@@ -39,6 +41,7 @@ public class GameManager :  MonoBehaviour
         ChatBot = GameObject.Find("ChatBot");
         ChatBot.SetActive(false);
         HackerTracker.gameObject.SetActive(false);
+        accept = false;
     }
 
     void Update()
@@ -129,6 +132,7 @@ public class GameManager :  MonoBehaviour
     public void Accept()
     {
         HackerTracker.SetActive(true);
+        accept = true;
     }
     IEnumerator C1Reject()
     {
@@ -167,6 +171,10 @@ public class GameManager :  MonoBehaviour
         GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
         yield return new WaitForSeconds(1f);
         GameObject.Find("Anonymous").GetComponent<Level3_Anonymous>().run2 = true;
+        if (!accept)
+        {
+            gameData.Invisible = true;
+        }
     }
 
     IEnumerator C2Skeptical()
@@ -185,5 +193,9 @@ public class GameManager :  MonoBehaviour
         GameObject.Find("Player").GetComponent<Level3_PlayerMovement>().stop = false;
         yield return new WaitForSeconds(1f);
         GameObject.Find("Anonymous").GetComponent<Level3_Anonymous>().run2 = true;
+        if (!accept)
+        {
+            gameData.Invisible = true;
+        }
     }
 }

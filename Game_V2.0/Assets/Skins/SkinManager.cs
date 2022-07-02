@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SkinManager : MonoBehaviour
 {
     public GameData gameData;
-    [SerializeField] private Button Skin1;
-    [SerializeField] private Button Purple;
-    [SerializeField] private Button Red;
+    [SerializeField] private Button VirtualGuy;
+    [SerializeField] private Button Lotus;
+    [SerializeField] private Button Carnage;
     [SerializeField] private Button Metal;
     [SerializeField] private Button Gold;
     [SerializeField] private Button Inv;
@@ -16,9 +17,9 @@ public class SkinManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Skin1.enabled = false;
-        Purple.enabled = false;
-        Red.enabled = false;
+        VirtualGuy.enabled = true;
+        Lotus.enabled = false;
+        Carnage.enabled = false;
         Metal.enabled = false;
         Gold.enabled = false;
         Inv.enabled = false;
@@ -27,41 +28,37 @@ public class SkinManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameData.Skin1)
+        if (gameData.Lotus)
         {
-            Skin1.enabled = true;
+            Lotus.enabled = true;
         }
-        if (gameData.Skin2)
+        if (gameData.Carnage)
         {
-            Purple.enabled = true;
+            Carnage.enabled = true;
         }
-        if (gameData.Skin3)
-        {
-            Red.enabled = true;
-        }
-        if (gameData.Skin4)
+        if (gameData.Metal)
         {
             Metal.enabled = true;
         }
-        if (gameData.Skin5)
+        if (gameData.Golden)
         {
             Gold.enabled = true;
         }
-        if (gameData.Skin6)
+        if (gameData.Invisible)
         {
             Inv.enabled = true;
         }
 
         switch (gameData.CurrentSkin)
         {
-            case 1:
-                Skin1.Select();
+            case 0:
+                VirtualGuy.Select();
                 break;
-            case 2:
-                Purple.Select();
+            case 1:
+                Carnage.Select();
                 break;
             case 3:
-                Red.Select();
+                Lotus.Select();
                 break;
             case 4:
                 Metal.Select();
@@ -75,21 +72,26 @@ public class SkinManager : MonoBehaviour
             default:
                 break;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(gameData.LastScene);
+        }
     }
 
-    public void Skin1Click()
+    public void VirtualClick()
     {
-        gameData.CurrentSkin = 1;
+        gameData.CurrentSkin = 0;
     }
 
-    public void PurpleClick()
-    {
-        gameData.CurrentSkin = 2;
-    }
-
-    public void RedClick()
+    public void LotusClick()
     {
         gameData.CurrentSkin = 3;
+    }
+
+    public void CarnageClick()
+    {
+        gameData.CurrentSkin = 1;
     }
 
     public void MetalClick()
@@ -106,6 +108,4 @@ public class SkinManager : MonoBehaviour
     {
         gameData.CurrentSkin = 6;
     }
-
-
 }
