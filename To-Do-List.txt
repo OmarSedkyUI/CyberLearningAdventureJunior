@@ -13,7 +13,7 @@ Bug:
 1- bugs player
 2- Zoom In Level 2
 3- UI Scaling
-
+4- Edit Text
 
 
 
