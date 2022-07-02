@@ -100,6 +100,7 @@ public class Level2_Friend_Level2 : MonoBehaviour
                     {
                         dialogue.SetActive(false);
                         GameObject.Find("Player").GetComponent<Level2_PlayerMovement>().stop = false;
+                        index2 = 0;
                     }
                     else
                     {
