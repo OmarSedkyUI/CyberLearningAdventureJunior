@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   UserUsername: Player
-  UserPassword: 
+  UserPassword: Password@1
   LastScene: 
   Level1: 0
   Level2: 0
   Level3: 0
   CurrentSkin: 0
-  Lotus: 0
-  Carnage: 0
-  Metal: 0
-  Golden: 0
-  Invisible: 0
+  Lotus: 1
+  Carnage: 1
+  Metal: 1
+  Golden: 1
+  Invisible: 1

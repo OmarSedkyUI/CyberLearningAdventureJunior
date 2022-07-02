@@ -12,9 +12,7 @@ Main - Game Name in Menu
 Bug:
 1- bugs player
 2- Zoom In Level 2
-3- remove e from triminal lvl2
-4- lvl 2 terminal error message wrong
-
+3- UI Scaling
 
 
 
@@ -34,6 +32,8 @@ DONE:
 
 *9- Buttons & Panel (Ahmed)
 *10- rewarding system (implemented/ Abdo + Omar)
+11- remove e from triminal lvl2
+12- lvl 2 terminal error message wrong
 
 Scroll remove
 auto scroll
