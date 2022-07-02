@@ -77,8 +77,8 @@ public class Level1_Passwords : MonoBehaviour
 
         if (Pass == "")
         {
-            str.text = "Pass Strength: No Password";
-            str.color = Color.black;
+            str.text = "Pass Strength No Password";
+            str.color = Color.white;
         }
 
         if(Pass != "" && flag0)
@@ -89,25 +89,25 @@ public class Level1_Passwords : MonoBehaviour
 
         if (done == 0)
         {
-            str.text = "Pass Strength: Weak";
+            str.text = "Pass Strength Weak";
             str.color = Color.red;
         }
         
         if(done == 1)
         {
-            str.text = "Pass Strength: Weak";
+            str.text = "Pass Strength Weak";
             str.color = Color.red;
         }
         
         if (done == 2)
         {
-            str.text = "Pass Strength: Fair";
+            str.text = "Pass Strength Fair";
             str.color = Color.yellow;
         }
         
         if (done == 3)
         {
-            str.text = "Pass Strength: Strong";
+            str.text = "Pass Strength Strong";
             str.color = Color.green;
         }
     }
