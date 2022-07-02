@@ -37,7 +37,3 @@ DONE:
 
 Scroll remove
 auto scroll
-		
-		
-OMAR:
-1- Import all graphics
