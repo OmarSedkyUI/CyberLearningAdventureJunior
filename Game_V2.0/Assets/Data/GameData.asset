@@ -18,9 +18,9 @@ MonoBehaviour:
   Level1: 0
   Level2: 1
   Level3: 1
-  CurrentSkin: 6
+  CurrentSkin: 1
   Lotus: 0
-  Carnage: 0
+  Carnage: 1
   Metal: 0
   Golden: 0
-  Invisible: 0
+  Invisible: 1

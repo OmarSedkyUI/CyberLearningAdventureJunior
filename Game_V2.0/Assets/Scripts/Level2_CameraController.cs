@@ -17,28 +17,25 @@ public class Level2_CameraController : MonoBehaviour
     [SerializeField] private string[] lines;
     private float dirx = 0f;
     private float moveSpeed = 15f;
-    public Camera cam;
-    public float defaultCam;
     Rigidbody2D rb;
     private bool oneTime;
     private int index;
     Animator anim;
     bool stopFighting;
+
     private void Start()
     {
         UI.SetActive(false);
         anim = GetComponent<Animator>();
-        defaultCam = GetComponent<Camera>().orthographicSize;
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        
         oneTime = true;
         index = 1;
         stopFighting = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(anim.recorderStartTime);
         dirx = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirx * moveSpeed, rb.velocity.y);
 
@@ -69,12 +66,18 @@ public class Level2_CameraController : MonoBehaviour
             }
         }
 
-        if (player.position.x > 301.2252f && GetComponent<Camera>().orthographicSize <= 11.63 && dirx > 0f)
-            GetComponent<Camera>().orthographicSize += 0.003f;
-        else if(player.position.x > 432f && GetComponent<Camera>().orthographicSize >= defaultCam + 2)
-            GetComponent<Camera>().orthographicSize -= 0.02f;
+        if (player.position.x > 301.2252f)
+        {
+            Camera.main.orthographic = false;
+            if(Camera.main.fieldOfView <= 100 && dirx > 0f)
+            {
+                Camera.main.fieldOfView += 0.02f;
+            }
+        }    
+        /*else if (player.position.x > 432f)
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(444.805f, 19.86f, transform.position.z), 12 * Time.deltaTime);*/
 
-        if(!oneTime)
+        if (!oneTime)
         {
             if(!stopFighting)
             {

@@ -89,7 +89,7 @@ public class Level1_Hacker : MonoBehaviour
         {
             Level1_Passwords.Pass = inputField.text;
         }
-        if(str.text == "Pass Strength: Strong")
+        if(str.text == "Pass Strength Strong")
         {
             if(WritePass)
             {
