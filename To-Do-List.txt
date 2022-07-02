@@ -11,9 +11,14 @@ Main - Game Name in Menu
 
 Bug:
 1- bugs player
-2- Zoom In Level 2
-3- UI Scaling
-4- Edit Text
+
+
+level complete closes quickly
+text in chatbot is too big
+change color of text in chatbot
+
+change delay b4 message in textbox
+about
 
 
 
@@ -34,6 +39,9 @@ DONE:
 *10- rewarding system (implemented/ Abdo + Omar)
 11- remove e from triminal lvl2
 12- lvl 2 terminal error message wrong
+13- Zoom In Level 2
+14- UI Scaling
+15- Edit Text
 
 Scroll remove
 auto scroll
