@@ -74,8 +74,6 @@ public class Level2_CameraController : MonoBehaviour
                 Camera.main.fieldOfView += 0.02f;
             }
         }    
-        /*else if (player.position.x > 432f)
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(444.805f, 19.86f, transform.position.z), 12 * Time.deltaTime);*/
 
         if (!oneTime)
         {
