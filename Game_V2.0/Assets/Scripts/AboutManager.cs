@@ -11,6 +11,10 @@ public class AboutManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (string.IsNullOrEmpty(gameData.LastScene))
+            {
+                gameData.LastScene = "Level1";
+            }
             SceneManager.LoadScene(gameData.LastScene);
         }
     }

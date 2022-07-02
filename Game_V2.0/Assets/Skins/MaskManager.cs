@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MaskManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MaskManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Item.enabled)
+        if(Item.interactable)
         {
             Mask.SetActive(false);
         }

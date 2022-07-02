@@ -17,12 +17,12 @@ public class SkinManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        VirtualGuy.enabled = true;
-        Lotus.enabled = false;
-        Carnage.enabled = false;
-        Metal.enabled = false;
-        Gold.enabled = false;
-        Inv.enabled = false;
+        VirtualGuy.interactable = true;
+        Lotus.interactable = false;
+        Carnage.interactable = false;
+        Metal.interactable = false;
+        Gold.interactable = false;
+        Inv.interactable = false;
     }
 
     // Update is called once per frame
@@ -30,23 +30,23 @@ public class SkinManager : MonoBehaviour
     {
         if (gameData.Lotus)
         {
-            Lotus.enabled = true;
+            Lotus.interactable = true;
         }
         if (gameData.Carnage)
         {
-            Carnage.enabled = true;
+            Carnage.interactable = true;
         }
         if (gameData.Metal)
         {
-            Metal.enabled = true;
+            Metal.interactable = true;
         }
         if (gameData.Golden)
         {
-            Gold.enabled = true;
+            Gold.interactable = true;
         }
         if (gameData.Invisible)
         {
-            Inv.enabled = true;
+            Inv.interactable = true;
         }
 
         switch (gameData.CurrentSkin)
@@ -75,6 +75,10 @@ public class SkinManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (string.IsNullOrEmpty(gameData.LastScene))
+            {
+                gameData.LastScene = "Level1";
+            }
             SceneManager.LoadScene(gameData.LastScene);
         }
     }
