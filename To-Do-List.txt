@@ -4,20 +4,16 @@ Main - Game Name in Menu
 
 *1- About
 
+
+
 1- scoreboard
-
-
-*5- Documentation (Game 2 screenshots) (Magdy)
 
 Bug:
 1- bugs player
 
 
-level complete closes quickly
-text in chatbot is too big
 change color of text in chatbot
 change delay b4 message in textbox
-about
 
 Camera
 
@@ -40,9 +36,12 @@ DONE:
 *10- rewarding system (implemented/ Abdo + Omar)
 11- remove e from triminal lvl2
 12- lvl 2 terminal error message wrong
-13- Zoom In Level 2
-14- UI Scaling
-15- Edit Text
+*13- Documentation (Game 2 screenshots) (Magdy)
+14- Zoom In Level 2
+15- UI Scaling
+16- Edit Text
+17- text in chatbot is too big
+18- level complete closes quickly
 
 Scroll remove
 auto scroll

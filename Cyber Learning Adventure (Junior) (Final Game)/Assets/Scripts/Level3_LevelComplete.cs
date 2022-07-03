@@ -18,7 +18,7 @@ public class Level3_LevelComplete : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         LevelComplete.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         LevelComplete.SetActive(false);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Level3");

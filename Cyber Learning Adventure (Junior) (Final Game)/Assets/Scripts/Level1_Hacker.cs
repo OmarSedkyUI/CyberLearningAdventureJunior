@@ -113,7 +113,7 @@ public class Level1_Hacker : MonoBehaviour
 
             LevelCompleted.SetActive(true);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
 
             LevelCompleted.SetActive(false);
 

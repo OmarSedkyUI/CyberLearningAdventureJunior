@@ -15,7 +15,7 @@ public class Level2_LevelComplete : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         LevelComplete.SetActive(false);
         yield return new WaitForSeconds(1f);
         gameData.Level3 = true;
