@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   UserUsername: Player
-  UserPassword: Password@1
-  LastScene: Level1
+  UserPassword: 
+  LastScene: 
   Level1: 0
   Level2: 0
   Level3: 0
@@ -22,5 +22,5 @@ MonoBehaviour:
   Lotus: 0
   Carnage: 0
   Metal: 0
-  Golden: 1
-  Invisible: 1
+  Golden: 0
+  Invisible: 0
