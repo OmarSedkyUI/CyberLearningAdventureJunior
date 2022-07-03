@@ -16,9 +16,10 @@ Bug:
 level complete closes quickly
 text in chatbot is too big
 change color of text in chatbot
-
 change delay b4 message in textbox
 about
+
+Camera
 
 
 
