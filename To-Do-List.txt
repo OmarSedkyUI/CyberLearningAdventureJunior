@@ -9,13 +9,9 @@ Main - Game Name in Menu
 1- scoreboard
 
 Bug:
-1- bugs player
+bugs player
 
 
-change color of text in chatbot
-change delay b4 message in textbox
-
-Camera
 
 
 
@@ -42,6 +38,12 @@ DONE:
 16- Edit Text
 17- text in chatbot is too big
 18- level complete closes quickly
+19- change delay b4 message in textbox
+20- change color of text in chatbot
+21- Camera
 
 Scroll remove
 auto scroll
+
+960000
+000096
