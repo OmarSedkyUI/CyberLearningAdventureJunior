@@ -51,11 +51,11 @@ public class Level2_CameraController : MonoBehaviour
                 transform.position = new Vector3(-0.02f, player.position.y + 4, transform.position.z);
             }
 
-            else if (Vector2.Distance(player.position, hacker.position) < 25.60f && player.position.x > 400f)
+            else if (Vector2.Distance(player.position, hacker.position) < 22f && player.position.x > 400f)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY;
                 GameObject.Find("Player").GetComponent<Level2_PlayerMovement>().stop = true;
-                transform.position = Vector3.MoveTowards(transform.position, CamDest.position, 12 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x + 11f, player.position.y + 4, transform.position.z), 12 * Time.deltaTime);
                 if (oneTime)
                     StartCoroutine(fighting());
             }
@@ -65,15 +65,6 @@ public class Level2_CameraController : MonoBehaviour
                 transform.position = new Vector3(player.position.x, player.position.y + 4, transform.position.z);
             }
         }
-
-        if (player.position.x > 301.2252f)
-        {
-            Camera.main.orthographic = false;
-            if(Camera.main.fieldOfView <= 100 && dirx > 0f)
-            {
-                Camera.main.fieldOfView += 0.02f;
-            }
-        }    
 
         if (!oneTime)
         {
