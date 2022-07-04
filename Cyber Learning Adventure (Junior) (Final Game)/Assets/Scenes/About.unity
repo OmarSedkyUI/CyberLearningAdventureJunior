@@ -3206,26 +3206,23 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "About Section\nCyber Learning Adventure Junior is a Cyber Security Educational
+  m_text: "About Section\r\nCyber Learning Adventure Junior is a Cyber Security Educational
     Game that follow an actual, existing security threat model.\r\nWe have carefully
     chosen the suitable threats for children in age group 8-15 according to the threats
     that are faced by children which were analyzed through several researches.\r\n\r\nPassword
     Level:- This level passing condition are taken from the National Institute of
     Standards and Technology Cybersecurity Framework, NIST Cybersecurity Framework
-    for short. (Each Sublevel Checks For The Same Condition As The Previous Sublevel
-    With More Conditions)\r\n1) Sublevel 1:- The passing condition for this sublevel
-    is the length of the password which should be more than 8 characters and should
-    not exceed 64 characters.\r\n2) Sublevel 2:- The passing condition for this sublevel
-    is to check that the password is not a password that is commonly used by different
-    people which is accomplished by checking the password with a 1000 common password
-    that are used by most people.\r\n3) Sublevel 3:- The passing condition for this
-    sublevel is that the password have to contain mixture of uppercase and lowercase
-    characters as well as numbers.\r\n4) Sublevel 4:- The passing condition for this
-    sublevel is that the password have to contain at least one special character.\r\nWith
-    these 4 sublevels , we help make sure that the password created is strong enough
-    to inhibit most common password attacks.\r\n\r\r\nTeam Members:-\r\n1) Omar Ahmed
-    Wafaa\r\n2) David Moheb\r\n3) Abdulrahman Kamal\r\n4) Omar Magdy\r\n5) Ahmed
-    Essam\r\n\nSupervised By:-\n\t\tDr. Hanan Hindy"
+    for short.\r\n1) Condition 1:- The passing condition is the length of the password
+    which should be more than 8 characters and should not exceed 64 characters.\r\n2)
+    Condition 2:- The passing condition is that the password have to contain mixture
+    of uppercase and lowercase characters as well as numbers and at least one special
+    character.\r\n3) Condition 3:- The passing condition is to check that the password
+    is not a password that is commonly used by different people which is accomplished
+    by checking the password with a 1000 common password that are used by most people.\r\nWith
+    these 3 Conditions , we help make sure that the password created is strong enough
+    to inhibit most common password attacks.\r\n\r\n\r\nTeam Members:-\r\n1) Omar
+    Ahmed Wafaa\r\n2) David Moheb\r\n3) Abdulrahman Kamal\r\n4) Omar Magdy\r\n5)
+    Ahmed Essam\r\n\r\nSupervised By:-\r\n\t\tDr. Hanan Hindy"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
